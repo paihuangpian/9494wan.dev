@@ -1,3 +1,6 @@
+body{
+    background-color: #e7e7e7;
+}
 a{
     text-decoration: none;
     color: #333;
@@ -10,66 +13,117 @@ ul{
 a:hover{
     color: #2780e3;
 }
+a.blue{
+    color: #2780e3;
+}
+a.green{
+    color: #3fb618;
+}
+a.red{
+    color: #ff0039;
+}
+a.origin{
+    color: #ff7518;
+}
+input{
+    outline: none;
+}
 .nav{
     height: 50px;
-    background-color: #2780e3;
+    background-color: #fff;
     line-height: 50px;
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     z-index: 1000;
-}
-.nav a{
-    color: #fff;
-    padding: 0 15px;
-    display: inline-block;
-    float: left;
-}
-.nav a:hover{
-    text-decoration: none;
-    background-color: #1967be;
-}
-.nav a.active{
-    text-decoration: none;
-    background-color: #1967be;
+    border-bottom: solid 1px #d6d6d6;
 }
 .nav a.brand{
-    font-size: 20px;
     width: 200px;
-    padding: 0;
-    text-indent: 50px;
-    font-size: 14px;
-    font-weight: bold;
+    text-align: center;
+    float: left;
 }
-.nav a.brand:hover{
+.nav ul{
+    padding-left: 15px;
+    float: left;
+}
+.nav ul li{
+    float: left;
+}
+.nav ul li  a{
+    padding: 0 15px;
+    display: inline-block;
+}
+.nav ul li  a:hover{
+    text-decoration: none;
+    color: #2780e3;
+}
+.nav ul li a.active{
+    text-decoration: none;
     background-color: #2780e3;
+    color: #fff;
 }
 .sidebar{
     position: fixed;
     top: 50px;
     width: 200px;
-    background-color: #e7e7e7;
+    background-color: #fff;
     bottom: 0;
+    padding-top: 15px;
 }
 .sidebar a{
     display: inline-block;
     width: 100%;
-    height: 40px;
-    line-height: 40px;
-    text-indent: 47px;
-    border-left: solid 3px #e7e7e7;
-    color: #666;
-    font-size: 14px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
 }
 .sidebar a:hover{
-    background-color: #fff;
-    color: #000;
-    border-left: solid 3px #2780e3;
+    color: #2780e3;
+}
+.sidebar a.active{
+    color: #2780e3;
+    border-right: solid 2px #2780e3;
 }
 .container{
     position:absolute;
     top: 50px;
     left: 200px;
+    right: 0;
     z-index: 999;
+    margin:15px;
+    padding:0 15px;
+    background-color: #fff;
+}
+.container .title, .container .action{
+    height: 50px;
+    line-height: 50px;
+}
+.container .title{
+    border-bottom: solid 1px #e7e7e7;
+}
+.container .title a.active{
+    color: #2780e3;
+}
+.container .title span{
+    color: #d6d6d6;
+    margin: 0 5px;
+}
+.container table{
+    font-size: 14px;
+    width: 100%;
+    border-collapse:collapse;
+}
+.container table tr:hover{
+    background-color: #f0f0f0;
+}
+.container table th, .container table td{
+    text-align: left;
+    border: solid 1px #e7e7e7;
+    text-indent: 10px;
+    height: 50px;
+}
+.container input[type=submit]{
+    background-color: #e7e7e7;
 }
