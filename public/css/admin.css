@@ -3,7 +3,7 @@ body{
 }
 a{
     text-decoration: none;
-    color: #999;
+    color: #666;
 }
 ul{
     list-style: none;
@@ -11,19 +11,38 @@ ul{
     margin: 0;
 }
 a:hover{
+    color: #5bc0de;
+}
+.blue{
     color: #2780e3;
 }
-a.blue{
-    color: #2780e3;
-}
-a.green{
+.green{
     color: #3fb618;
 }
-a.red{
+.red{
     color: #ff0039;
 }
-a.origin{
+.origin{
     color: #ff7518;
+}
+.btn-info {
+  color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+  font-size: 12px;
+  padding: 2px 6px;
+  border:solid 1px #46b8da;
+}
+.btn-info:focus,
+.btn-info.focus {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #1b6d85;
+}
+.btn-info:hover {
+  color: #ffffff;
+  background-color: #31b0d5;
+  border-color: #269abc;
 }
 input{
     outline: none;
@@ -43,6 +62,7 @@ input{
     width: 200px;
     text-align: center;
     float: left;
+    color: #000;
 }
 .nav ul{
     padding-left: 15px;
@@ -51,17 +71,13 @@ input{
 .nav ul li{
     float: left;
 }
-.nav ul li  a{
+.nav ul li a{
     padding: 0 15px;
     display: inline-block;
 }
-.nav ul li  a:hover{
-    text-decoration: none;
-    color: #2780e3;
-}
 .nav ul li a.active{
     text-decoration: none;
-    background-color: #2780e3;
+    background-color: #5bc0de;
     color: #fff;
 }
 .sidebar{
@@ -79,12 +95,25 @@ input{
     line-height: 50px;
     text-align: center;
 }
-.sidebar a:hover{
-    color: #2780e3;
-}
 .sidebar a.active{
-    color: #2780e3;
-    border-right: solid 2px #2780e3;
+    color: #5bc0de;
+    border-right: solid 2px #5bc0de;
+}
+.errors{
+    color:#ff7518;
+    height: 30px;
+    line-height: 30px;
+    position:absolute;
+    top:50px;
+    left:200px;
+    right: 0;
+    z-index: 1000;
+    padding-left: 30px;
+    background-color: #fcf8e3;
+    font-size: 12px;
+}
+.errors i{
+    font-size: 14px;
 }
 .container{
     position:absolute;
@@ -96,19 +125,28 @@ input{
     padding:15px;
     background-color: #fff;
 }
-.container .title, .container .action{
+.container .title, .container .action, .container .filter{
     height: 50px;
     line-height: 50px;
 }
 .container .title{
     border-bottom: solid 1px #e7e7e7;
 }
-.container .title a.active{
-    color: #2780e3;
+.container .filter{
+    border-bottom: solid 1px #e7e7e7;
 }
-.container .title span{
+.container .filter a.active{
+    color: #5bc0de;
+}
+.container .title h2{
+    margin: 0;
+    float: left;
+    font-weight: normal;
+    margin-right: 15px;
+}
+.container span.sep{
     color: #d6d6d6;
-    margin: 0 5px;
+    margin: 0 10px;
 }
 .container table{
     font-size: 14px;
@@ -116,7 +154,7 @@ input{
     border-collapse:collapse;
 }
 .container table tr:hover{
-    background-color: #f0f0f0;
+    background-color: #f8f8f8;
 }
 .container table th, .container table td{
     text-align: left;
@@ -126,4 +164,20 @@ input{
 }
 .container input[type=submit]{
     background-color: #e7e7e7;
+}
+.container table.add{
+    border:none;
+}
+.container table.add td{
+    border:none;
+    border-bottom: solid 1px #e7e7e7;
+    text-indent: 0;
+}
+.container table.add input[type=text]{
+    border:solid 1px #e7e7e7;
+    height: 30px;
+    width: 200px;
+}
+.container table.add input[type=text]:focus{
+    border:solid 1px #5bc0de;
 }
