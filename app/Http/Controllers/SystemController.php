@@ -9,13 +9,13 @@ use App\Http\Requests;
 class SystemController extends Controller
 {
     public function index(){
-        $menus = \DB::table('menus')->get();
+        $menus = \DB::table('menus')->where('status', 1)->get();
         return view('admin.system.index', ['menus' => $menus]);
     }
 
     public function addMenu(){
-        $menus = \DB::table('menus')->where('level', 0)->get();
-        return view('admin.system.addMenu');
+        $menus = \DB::table('menus')->where('status', 1)->get();
+        return view('admin.system.addMenu', ['menus' => $menus]);
     }
 
     public function postMenu(Request $request){
@@ -37,7 +37,7 @@ class SystemController extends Controller
     	\DB::table('menus')->insert(
             $insert
 		);
-        $validator = ['error' => 'asd'];
-		return redirect()->back()->withErrors($validator)->withInput();
+
+		return redirect()->back();
     }
 }

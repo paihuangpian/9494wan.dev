@@ -29,6 +29,9 @@
                 <td>
                     <select class="" name="pid">
                         <option value="0">顶级</option>
+                        @foreach($menus as $menu)
+                            <option value="{{ $menu->id }}">{{ $menu->name }}</option>
+                        @endforeach
                     </select>
                 </td>
             </tr>
