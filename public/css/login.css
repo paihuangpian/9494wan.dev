@@ -1,0 +1,51 @@
+body{
+	background: url(/images/1.jpg) no-repeat #f4f4f4;
+	background-size: cover;
+	text-align: center;
+}
+h1{
+	font-weight: 400;
+}
+.news{
+	margin-bottom: 30px;
+	color: #d6d6d6;
+}
+.form{
+	padding: 50px;
+	width: 300px;
+	margin: 0 auto;
+	position: relative;
+	color: #fff;
+}
+.form-b{
+	position: absolute;
+	top:0;
+	left:0;
+	right: 0;
+	bottom: 0;
+	opacity: 0.7;
+	z-index: -1;
+	background-color: #555;
+}
+.form-control{
+	height: 40px;
+	width: 100%;
+	outline: none;
+	border: solid 1px #e7e7e7;
+	color: #333;
+	text-indent: 10px;
+}
+.item{
+	margin-top: 10px;
+}
+button{
+	height: 40px;
+	width: 100%;
+	margin-top: 10px;
+	background-color: #2780e3;
+	border: solid 1px #1670d2;
+	color: #fff;
+}
+a{
+	color: #fff;
+}

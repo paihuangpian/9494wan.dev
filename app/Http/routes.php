@@ -19,7 +19,7 @@ Route::group(['prefix' => 'api'], function(){
 Route::group(['middleware' => ['web']], function () {
 
     // 后台
-    Route::group(['prefix' => 'admin'], function(){
+    Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
         // 设置服务器时区并利用 HTML5 server-sent 更新时间
         Route::get('time', function(){
@@ -33,7 +33,7 @@ Route::group(['middleware' => ['web']], function () {
 
         // 首页：服务器信息等
         Route::get('/', ['as' => 'admin', function(){
-            
+            date_default_timezone_set("Etc/GMT-8");
             $infos = collect([
                 ['name' => '系统版本', 'value' => '1.0.0', 'color' => 'red'],
                 ['name' => '服务器', 'value' => $_SERVER["SERVER_SOFTWARE"], 'color' => 'origin'],
@@ -41,7 +41,7 @@ Route::group(['middleware' => ['web']], function () {
                 ['name' => 'GD库版本', 'value' => gd_info()['GD Version'], 'color' => 'green'],
                 ['name' => '最大上传限制', 'value' => ini_get("file_uploads") ? ini_get("upload_max_filesize") : "Disabled", 'color' => 'red'],
                 ['name' => '脚本最大执行时间', 'value' => ini_get("max_execution_time") . '秒', 'color' => 'origin'],
-                // ['name' => '服务器时间', 'value' => date("Y-m-d H:i:s",time()), 'color' => 'grey'],
+                ['name' => '服务器时间', 'value' => date("Y-m-d H:i:s",time()), 'color' => 'grey'],
                 ['name' => '版权所有', 'value' => '广州市格木网络科技有限公司', 'color' => 'green'],
             ]);
 
@@ -71,4 +71,10 @@ Route::group(['middleware' => ['web']], function () {
         });
     }); 
 
+});
+
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/home', 'HomeController@index');
 });
