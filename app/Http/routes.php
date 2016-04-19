@@ -16,10 +16,15 @@ Route::group(['prefix' => 'api'], function(){
     });
 });
 
+// 后台
 Route::group(['middleware' => ['web']], function () {
 
-    // 后台
-    Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+    Route::get('admin/login', 'Admin\AuthController@getLogin');
+    Route::post('admin/login', 'Admin\AuthController@postLogin');
+    Route::get('admin/logout', 'Admin\AuthController@logout');
+    Route::get('admin/password/reset', 'Admin\PasswordController@showResetForm');
+    
+    Route::group(['prefix' => 'admin', 'middleware' => 'auth:admin'], function(){
 
         // 设置服务器时区并利用 HTML5 server-sent 更新时间
         Route::get('time', function(){
@@ -69,12 +74,16 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/', ['as' => 'game', 'uses' => 'Admin\GameController@index']);
             Route::get('addGame', ['as' => 'addGame', 'uses' => 'Admin\GameController@addGame']);
         });
-    }); 
+    });
 
 });
 
+// 前台
 Route::group(['middleware' => 'web'], function () {
-    Route::auth();
+
+    // Route::auth(); 前端重写auth，只允许登录动作，登录名改为name
+    Route::get('login', 'Auth\AuthController@showLoginForm');
+    Route::post('login', 'Auth\AuthController@login');
 
     Route::get('/home', 'HomeController@index');
 });

@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
+use Illuminate\Http\Request;
+
 class AuthController extends Controller
 {
     /*
@@ -68,5 +70,19 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    // 实现用户名登录
+    protected $username = 'name';
+
+    protected function validateLogin(Request $request)
+    {   
+        $info = [
+            'name.required' => '用户名必须填写',
+            'password.required' => '密码必须填写'
+        ];
+        $this->validate($request, [
+            'name' => 'required', 'password' => 'required',
+        ], $info);
     }
 }

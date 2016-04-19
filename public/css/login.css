@@ -35,6 +35,9 @@ h1{
 	color: #333;
 	text-indent: 10px;
 }
+.i1 input{
+  	border-bottom: none;
+}
 .item{
 	margin-top: 10px;
 }
@@ -48,4 +51,9 @@ button{
 }
 a{
 	color: #fff;
+}
+.errors{
+	color:#ff7518;
+    /*background-color: #fcf8e3;*/
+    font-size: 12px;
 }

@@ -67,6 +67,32 @@ input{
     float: left;
     color: #31b0d5;
 }
+.nav .admin{
+    display: block;
+    padding: 0 15px;
+    color: #31b0d5;
+    float: right;
+    position: relative;
+}
+.nav .admin .admin-name{
+    display: inline-block;
+    padding: 0 15px;
+}
+.nav .admin .admin-drop{
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    left: 15px;right: 15px;
+    border: solid 1px #e7e7e7;
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+.admin:hover .admin-drop{
+    display: block;
+}
+.nav .admin .admin-drop a{
+    display: block;
+    text-align: center;
+}
 .nav ul{
     padding-left: 15px;
     float: left;

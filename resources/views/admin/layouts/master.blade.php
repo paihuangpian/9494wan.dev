@@ -14,7 +14,7 @@
         <div class="nav">
             <a href="javascript:;" class="brand"><b>格木网络</b></a>
             <ul>
-                <!-- <li><a href="{{ route('admin') }}" @if(Route::currentRouteName() == 'admin') class="active" @endif>首页</a></li> -->
+                <li><a href="{{ route('admin') }}" @if(Route::currentRouteName() == 'admin') class="active" @endif>首页</a></li>
                 <li><a href="{{ route('dashboard') }}" @if(Route::currentRouteName() == 'dashboard') class="active" @endif>仪表盘</a></li>
                 <li><a href="{{ route('system') }}" @if(Route::currentRouteName() == 'system') class="active" @endif>系统</a></li>
                 <li><a href="">员工</a></li>
@@ -23,6 +23,14 @@
                 <li><a href="">公会</a></li>
                 <li><a href="">文章</a></li>
             </ul>
+
+            <div class="admin">
+                <a href="" class="admin-name">{{ Auth::guard('admin')->user()->name }} <i class="fa fa-chevron-down"></i></a>
+                <div class="admin-drop">
+                    <a href="{{ url('admin/password/reset') }}">更改密码</a>
+                    <a href="{{ url('admin/logout') }}">退出</a>
+                </div>
+            </div>
         </div>
 
         <!-- 侧边导航 -->
