@@ -14,13 +14,12 @@
         <div class="nav">
             <a href="javascript:;" class="brand"><b>格木网络</b></a>
             <ul>
-                <li><a href="{{ route('admin') }}" @if(Route::currentRouteName() == 'admin') class="active" @endif>首页</a></li>
+                <!-- <li><a href="{{ route('admin') }}" @if(Route::currentRouteName() == 'admin') class="active" @endif>首页</a></li> -->
                 <li><a href="{{ route('dashboard') }}" @if(Route::currentRouteName() == 'dashboard') class="active" @endif>仪表盘</a></li>
                 <li><a href="{{ route('system') }}" @if(Route::currentRouteName() == 'system') class="active" @endif>系统</a></li>
+                <li><a href="{{ route('group') }}" @if(Route::currentRouteName() == 'group') class="active" @endif>组织</a></li>
                 <li><a href="">员工</a></li>
                 <li><a href="{{ route('game') }}" @if(in_array(Route::currentRouteName(), ['game'])) class="active" @endif>游戏</a></li>
-                <li><a href="">会员</a></li>
-                <li><a href="">公会</a></li>
                 <li><a href="">文章</a></li>
             </ul>
 

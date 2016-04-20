@@ -74,6 +74,13 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/', ['as' => 'game', 'uses' => 'Admin\GameController@index']);
             Route::get('addGame', ['as' => 'addGame', 'uses' => 'Admin\GameController@addGame']);
         });
+
+        // 军团、小组
+        Route::group(['prefix' => 'group'], function(){
+            Route::get('/', ['as' => 'group', 'uses' => 'Admin\GroupController@index']);
+            Route::get('add', ['as' => 'addGroup', 'uses' => 'Admin\GroupController@addGroup']);
+            Route::post('postGroup', ['as' => 'postGroup', 'uses' => 'Admin\GroupController@postGroup']);
+        });
     });
 
 });
