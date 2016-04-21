@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="title">
-        <h2>新增组织</h2> <a href="{{ route('group') }}" class="btn-info">所有组织</a>
+        <h2>新增</h2> <a href="{{ route('group') }}" class="btn-info">所有军团</a>
     </div>
     <form action="{{ route('postGroup') }}" method="post">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -20,7 +20,7 @@
                 </td>
             </tr>
             <tr>
-                <td width="200">父级</td>
+                <td width="200">所属</td>
                 <td>
                     <select class="" name="pid">
                         <option value="0">顶级</option>

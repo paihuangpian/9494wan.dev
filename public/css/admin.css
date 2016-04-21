@@ -182,6 +182,9 @@ input{
     width: 100%;
     border-collapse: collapse;
 }
+.container table a{
+    text-decoration: underline;
+}
 .container table tr:hover{
     background-color: #f8f8f8;
 }

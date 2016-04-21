@@ -18,7 +18,7 @@ Route::group(['prefix' => 'api'], function(){
 
 // 后台
 Route::group(['middleware' => ['web']], function () {
-
+    date_default_timezone_set("Etc/GMT-8");
     Route::get('admin/login', 'Admin\AuthController@getLogin');
     Route::post('admin/login', 'Admin\AuthController@postLogin');
     Route::get('admin/logout', 'Admin\AuthController@logout');
@@ -41,12 +41,12 @@ Route::group(['middleware' => ['web']], function () {
             date_default_timezone_set("Etc/GMT-8");
             $infos = collect([
                 ['name' => '系统版本', 'value' => '1.0.0', 'color' => 'red'],
-                ['name' => '服务器', 'value' => $_SERVER["SERVER_SOFTWARE"], 'color' => 'origin'],
-                ['name' => 'PHP版本', 'value' => PHP_VERSION, 'color' => 'blue'],
-                ['name' => 'GD库版本', 'value' => gd_info()['GD Version'], 'color' => 'green'],
-                ['name' => '最大上传限制', 'value' => ini_get("file_uploads") ? ini_get("upload_max_filesize") : "Disabled", 'color' => 'red'],
-                ['name' => '脚本最大执行时间', 'value' => ini_get("max_execution_time") . '秒', 'color' => 'origin'],
-                ['name' => '服务器时间', 'value' => date("Y-m-d H:i:s",time()), 'color' => 'grey'],
+                // ['name' => '服务器', 'value' => $_SERVER["SERVER_SOFTWARE"], 'color' => 'origin'],
+                // ['name' => 'PHP版本', 'value' => PHP_VERSION, 'color' => 'blue'],
+                // ['name' => 'GD库版本', 'value' => gd_info()['GD Version'], 'color' => 'green'],
+                // ['name' => '最大上传限制', 'value' => ini_get("file_uploads") ? ini_get("upload_max_filesize") : "Disabled", 'color' => 'red'],
+                // ['name' => '脚本最大执行时间', 'value' => ini_get("max_execution_time") . '秒', 'color' => 'origin'],
+                // ['name' => '服务器时间', 'value' => date("Y-m-d H:i:s",time()), 'color' => 'grey'],
                 ['name' => '版权所有', 'value' => '广州市格木网络科技有限公司', 'color' => 'green'],
             ]);
 

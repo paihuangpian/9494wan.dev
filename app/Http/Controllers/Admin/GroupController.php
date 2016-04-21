@@ -9,14 +9,13 @@ use App\Http\Controllers\Controller;
 
 class GroupController extends Controller
 {   
-
+    // 递归
     static public function groups($array, $pid = 0){
         $arr = [];
         foreach($array as $v){
-            
             if($v->pid == $pid){
                 $v->child = self::groups($array, $v->id);
-                $arr = $v;
+                $arr[] = $v;
             }
         }
         return $arr;
@@ -26,13 +25,13 @@ class GroupController extends Controller
         // \DB::setFetchMode(\PDO::FETCH_ASSOC);
     	$groups = \DB::table('groups')->get();
         $groups =  self::groups($groups);
-        dd($groups);
+        // dd($groups);
 
     	return view('admin.group.index', ['groups' => $groups]);
     }
 
     public function addGroup(){
-    	$groups = \DB::table('groups')->get();
+    	$groups = \DB::table('groups')->where('level', 1)->get();
     	return view('admin.group.addGroup', ['groups' => $groups]);
     }
 
@@ -51,7 +50,7 @@ class GroupController extends Controller
         }
 
         $insert = array_except($request->all(), ['_token']);
-
+        $insert['created_at'] = date('Y-m-d H:i:s');
     	\DB::table('groups')->insert(
             $insert
 		);
