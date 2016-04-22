@@ -6,8 +6,9 @@
         <link href="/css/normalize.min.css" rel="stylesheet">
         <link href="/css/admin.css" rel="stylesheet">
         <link href="/css/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet">
-        <script src="/js/vue.js" charset="utf-8"></script>
-        <script src="/js/vue-router.min.js"></script>
+        <script src="http://cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
+        <script src="/js/jquery.modal.min.js"></script>
+        <script src="/js/tempo.min.js"></script>
     </head>
     <body>
         <!-- 主导航 -->

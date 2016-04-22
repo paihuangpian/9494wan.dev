@@ -57,4 +57,9 @@ class GroupController extends Controller
 
 		return redirect()->back();
     }
+
+    public function delGroup(Request $request){
+        \DB::table('groups')->delete($request->input('id'));
+        return redirect()->back();
+    }
 }

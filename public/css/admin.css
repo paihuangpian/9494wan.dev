@@ -82,7 +82,8 @@ input{
     display: none;
     position: absolute;
     background-color: #fff;
-    left: 15px;right: 15px;
+    left: 15px;
+    right: 15px;
     border: solid 1px #e7e7e7;
     box-shadow: 0 6px 12px rgba(0,0,0,.175);
 }
@@ -149,7 +150,7 @@ input{
     top: 50px;
     left: 200px;
     right: 0;
-    z-index: 999;
+    /*z-index: 999;*/
     margin:15px;
     padding:15px;
     background-color: #fff;
@@ -212,4 +213,24 @@ input{
 }
 .container table.add input[type=text]:focus{
     border:solid 1px #5bc0de;
+}
+
+/* modal */
+#lean_overlay {
+    position: fixed;
+    z-index:1000;
+    top: 50px;
+    left: 200px;
+    height:100%;
+    width:100%;
+    background: #000;
+    display: none;
+}
+#modal{
+  padding: 0 15px;
+  background: #fff;
+  -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  width: 300px;
 }

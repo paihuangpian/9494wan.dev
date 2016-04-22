@@ -80,6 +80,7 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/', ['as' => 'group', 'uses' => 'Admin\GroupController@index']);
             Route::get('add', ['as' => 'addGroup', 'uses' => 'Admin\GroupController@addGroup']);
             Route::post('postGroup', ['as' => 'postGroup', 'uses' => 'Admin\GroupController@postGroup']);
+            Route::get('del', ['as' => 'delGroup', 'uses' => 'Admin\GroupController@delGroup']);
         });
     });
 
