@@ -88,6 +88,13 @@ Route::group(['middleware' => ['web']], function () {
 
         });
 
+        // 员工
+        Route::group(['prefix' => 'user'], function(){
+            Route::get('/', ['as' => 'user', 'uses' => 'Admin\UserController@index']);
+            Route::get('add', ['as' => 'addUser', 'uses' => 'Admin\UserController@addUser']);
+            Route::post('add', ['as' => 'postUser', 'uses' => 'Admin\UserController@postUser']);
+        });
+
     });
 
 });

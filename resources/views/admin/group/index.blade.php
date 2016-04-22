@@ -2,17 +2,8 @@
 
 @section('content')
     <div class="title">
-        <h2>军团</h2> <a href="{{ route('addGroup') }}" class="btn-info">新增</a> <!-- <a href="#" class="btn-info">导出Excel</a> -->
+        <h2>军团</h2> <a href="{{ route('addGroup') }}" class="btn-info">新增</a>
     </div>
-    <!-- <div class="filter">
-        <a href="#" class="active">全部<small>({{ count($groups) }})</small></a><span class="sep">/</span><a href="#">已启用<small>(5)</small></a><span class="sep">/</span><a href="#">未启用<small>(0)</small></a>
-    </div> -->
-    <!-- <div class="action">
-        全选：
-        <select class="" name="">
-            <option value="option">删除</option>
-        </select>
-    </div> -->
     <table>
         <tr>
             <th>团号</th>
