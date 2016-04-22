@@ -81,7 +81,13 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('add', ['as' => 'addGroup', 'uses' => 'Admin\GroupController@addGroup']);
             Route::post('postGroup', ['as' => 'postGroup', 'uses' => 'Admin\GroupController@postGroup']);
             Route::get('del', ['as' => 'delGroup', 'uses' => 'Admin\GroupController@delGroup']);
+
+            // 指派组长api
+            Route::get('users', ['as' => 'getUsers', 'uses' => 'Admin\GroupController@getUsers']);
+            Route::get('searchUsers', ['as' => 'searchUsers', 'uses' => 'Admin\GroupController@searchUsers']);
+
         });
+
     });
 
 });

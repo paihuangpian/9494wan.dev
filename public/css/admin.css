@@ -226,7 +226,7 @@ input{
     background: #000;
     display: none;
 }
-#modal{
+.modal{
   padding: 0 15px;
   background: #fff;
   -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);

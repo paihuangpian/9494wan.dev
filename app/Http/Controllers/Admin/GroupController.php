@@ -62,4 +62,19 @@ class GroupController extends Controller
         \DB::table('groups')->delete($request->input('id'));
         return redirect()->back();
     }
+
+    public function getUsers(){
+        $users = \DB::table('users')->get();
+        return response()->json($users);
+    }
+
+     public function searchUsers(Request $request){
+        $users = \DB::table('users')->where('name', 'like', '%' . $request->input('name') . '%')->get();
+        if(!$users){
+            $users = [
+                'name' => '没有此员工'
+            ];
+        }
+        return response()->json($users);
+    }
 }

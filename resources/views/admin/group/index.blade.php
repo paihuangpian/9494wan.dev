@@ -38,7 +38,7 @@
                 <td style="text-indent: 40px">
                     {{ $child->name }} 
                     <a href="" class="grey">100</a>
-                    <a href="" class="grey">组长(未指派)</a>
+                    <a href="#modalZu" rel="modalZu" class="grey" id="{{ $child->id }}" data-url="{{ route('delGroup', ['id' => $child->id]) }}" data-level="{{ $child->level }}">组长</a>
                 </td>
                 <td>小组</td>
                 <td>@if($child->status) 已启用 @else <span class="red">未启用</span> @endif</td>
@@ -51,7 +51,7 @@
         @endforeach
     </table>
     <!-- 删除 modal start-->
-    <div id="modal" style="display: none">
+    <div id="modal" style="display: none" class="modal">
         <p id="title"></p>
         <p>
             <a href="" class="hidemodal">取消</a>
@@ -74,4 +74,38 @@
         });
     </script>
     <!-- 删除 modal end-->
+    <!-- 指派 modal start -->
+    <div id="modalZu" style="display: none" class="modal">
+        <p><input type="text" onkeyup="searchUsers(this.value)" value=""  id="searchName" placeholder="搜索"></p>
+        <div id="users">
+          <p data-template>
+            @{{ name }} <a href="" class="grey">选定</a>
+          </p>
+        </div>
+        <img id="loading" src="/images/loading.gif">
+    </div>
+    <script type="text/javascript">
+        var users = Tempo.prepare('users').when(TempoEvent.Types.RENDER_STARTING, function (event) {
+            $('#loading').show();
+        }).when(TempoEvent.Types.RENDER_COMPLETE, function (event) {
+            $('#loading').hide();
+        });
+        $(function(){
+          $('a[rel*=modalZu]').leanModal({ top: 150, overlay : 0.45, closeButton: ".modal_close" });
+          $('a[rel*=modalZu]').on("click",  function () {
+               
+               users.starting();
+               $.getJSON("{{ route('getUsers') }}", function(data) {
+                    users.render(data);
+               });
+          });
+        });
+        function searchUsers(name){
+            users.starting();
+            $.getJSON("{{ route('searchUsers') }}?name=" + name, function(data) {
+                users.render(data);
+            });
+        }
+    </script>
+    <!-- 指派 modal end -->
 @endsection
