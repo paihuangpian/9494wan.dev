@@ -80,6 +80,8 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/', ['as' => 'group', 'uses' => 'Admin\GroupController@index']);
             Route::get('add', ['as' => 'addGroup', 'uses' => 'Admin\GroupController@addGroup']);
             Route::post('postGroup', ['as' => 'postGroup', 'uses' => 'Admin\GroupController@postGroup']);
+            Route::get('edit', ['as' => 'editGroup', 'uses' => 'Admin\GroupController@editGroup']);
+            Route::post('edit', ['as' => 'updateGroup', 'uses' => 'Admin\GroupController@updateGroup']);
             Route::get('del', ['as' => 'delGroup', 'uses' => 'Admin\GroupController@delGroup']);
 
             // 指派组长api
@@ -93,6 +95,9 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('/', ['as' => 'user', 'uses' => 'Admin\UserController@index']);
             Route::get('add', ['as' => 'addUser', 'uses' => 'Admin\UserController@addUser']);
             Route::post('add', ['as' => 'postUser', 'uses' => 'Admin\UserController@postUser']);
+            Route::get('edit', ['as' => 'editUser', 'uses' => 'Admin\UserController@editUser']);
+            Route::post('edit', ['as' => 'updateUser', 'uses' => 'Admin\UserController@updateUser']);
+            Route::get('del', ['as' => 'delUser', 'uses' => 'Admin\UserController@delUser']);
         });
 
     });

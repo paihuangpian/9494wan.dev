@@ -15,11 +15,11 @@
         @foreach($groups as $key => $group)
         <tr>
             <td>{{ $key + 1 }}</td>
-            <td><span class="blue">{{ $group->name }}</span> <a href="" class="grey">100</a></td>
+            <td><span class="blue">{{ $group->name }}</span> (100 人)</td>
             <td>军团</td>
             <td>@if($group->status) 已启用 @else <span class="red">未启用</span> @endif</td>
             <td>
-                <a href="#" class="grey">编辑</a>
+                <a href="{{ route('editGroup', ['id' => $group->id]) }}" class="grey">编辑</a>
                 <a href="#modal" rel="modal" class="grey" id="{{ $group->id }}" data-url="{{ route('delGroup', ['id' => $group->id]) }}" data-level="{{ $group->level }}">删除</a>
             </td>
         </tr>
@@ -27,14 +27,13 @@
             <tr>
                 <td></td>
                 <td style="text-indent: 40px">
-                    {{ $child->name }} 
-                    <a href="" class="grey">100</a>
+                    {{ $child->name }} (100 人) 
                     <a href="#modalZu" rel="modalZu" class="grey" id="{{ $child->id }}" data-url="{{ route('delGroup', ['id' => $child->id]) }}" data-level="{{ $child->level }}">组长</a>
                 </td>
                 <td>小组</td>
                 <td>@if($child->status) 已启用 @else <span class="red">未启用</span> @endif</td>
                 <td>
-                    <a href="#" class="grey">编辑</a>
+                    <a href="{{ route('editGroup', ['id' => $child->id]) }}" class="grey">编辑</a>
                     <a href="#modal" rel="modal" class="grey" id="{{ $child->id }}" data-url="{{ route('delGroup', ['id' => $child->id]) }}" data-level="{{ $child->level }}">删除</a>
                 </td>
             </tr>
