@@ -1,21 +1,5 @@
 <?php
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/vue', function(){
-    return view('vue');
-});
-
-Route::group(['prefix' => 'api'], function(){
-    Route::get('menus', function(){
-        $menus = \DB::table('menus')->where('status', 1)->get();
-        sleep(1);
-        return response()->json($menus);
-    });
-});
-
 // 后台
 Route::group(['middleware' => ['web']], function () {
     date_default_timezone_set("Etc/GMT-8");
@@ -107,9 +91,10 @@ Route::group(['middleware' => ['web']], function () {
 // 前台
 Route::group(['middleware' => 'web'], function () {
 
-    // Route::auth(); 前端重写auth，只允许登录动作，登录名改为name
+    // Route::auth();
     Route::get('login', 'Auth\AuthController@showLoginForm');
     Route::post('login', 'Auth\AuthController@login');
+    Route::get('logout', 'Auth\AuthController@logout');
 
-    Route::get('/home', 'HomeController@index');
+    Route::get('/', 'HomeController@index');
 });
