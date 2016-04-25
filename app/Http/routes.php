@@ -40,17 +40,14 @@ Route::group(['middleware' => ['web']], function () {
         // 仪表盘
         Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'Admin\DashboardController@index']);
 
-        // 系统
-        Route::group(['prefix' => 'system'], function(){
-            Route::get('/', ['as' => 'system', function(){
-                $menus = \DB::table('menus')->where('status', 1)->get();
-                return view('admin.system.index', ['menus' => $menus]);
-            }]);
-            Route::group(['prefix' => 'menus'], function(){
-                Route::get('/', ['as' => 'menus', 'uses' => 'SystemController@index']);
-                Route::get('addMenu', ['as' => 'addMenu', 'uses' => 'SystemController@addMenu']);
-                Route::post('postMenu', ['as' => 'postMenu', 'uses' => 'SystemController@postMenu']);
-            });
+        // 等级计划
+        Route::group(['prefix' => 'level'], function(){
+            Route::get('/', ['as' => 'level', 'uses' => 'LevelController@index']);
+            Route::get('add', ['as' => 'addLevel', 'uses' => 'LevelController@addLevel']);
+            Route::post('add', ['as' => 'postLevel', 'uses' => 'LevelController@postLevel']);
+            Route::get('edit', ['as' => 'editLevel', 'uses' => 'LevelController@editLevel']);
+            Route::post('edit', ['as' => 'updateLevel', 'uses' => 'LevelController@updateLevel']);
+            Route::get('del', ['as' => 'delLevel', 'uses' => 'LevelController@delLevel']);
         });
 
         // 游戏

@@ -8,13 +8,13 @@ body{
 	left:0;
 	right: 0;
 	bottom: 0;
-	opacity: 0.7;
+	opacity: 0.5;
 	z-index: -1;
-	background-color: #555;
+	background-color: #000;
 }
 a{
     text-decoration: none;
-    color: #333;
+    color: #000;
 }
 ul{
     list-style: none;
@@ -22,7 +22,7 @@ ul{
     margin: 0;
 }
 a:hover{
-    color: #5bc0de;
+    color: #ff7518;
 }
 .container{
 	width: 960px;
@@ -66,10 +66,13 @@ h2{
 .nav a{
 	display: inline-block;
 	line-height: 50px;
-	width: 320px;
+	width: 240px;
 	float: left;
 	text-align: center;
 	color: #fff;
+}
+.zuzhang a{
+	width: 192px;
 }
 .nav a:hover,.nav a.active{
 	color: #ff7518;
@@ -83,4 +86,12 @@ h2{
 span.sep{
     color: #999;
     margin: 0 10px;
+}
+.footer{
+	text-align: center;
+	margin-top: 10px;
+}
+.silingbu{
+	text-align: center;
+	margin-top: 10px;
 }
