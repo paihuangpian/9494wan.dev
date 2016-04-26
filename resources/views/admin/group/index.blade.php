@@ -28,7 +28,7 @@
                 <td></td>
                 <td style="text-indent: 40px">
                     {{ $child->name }} (100 人) 
-                    <a href="#modalZu" rel="modalZu" class="grey" id="{{ $child->id }}" data-url="{{ route('delGroup', ['id' => $child->id]) }}" data-level="{{ $child->level }}">组长</a>
+                    <a href="#modalZu" rel="modalZu" class="grey" id="{{ $child->id }}" data-url="{{ route('delGroup', ['id' => $child->id]) }}" data-level="{{ $child->level }}">组长(@if(\DB::table('users')->whereRole_idAndGroup_id(1, $child->id)->first()) {{ \DB::table('users')->whereRole_idAndGroup_id(1, $child->id)->first()->name }} @else 暂无 @endif)</a>
                 </td>
                 <td>小组</td>
                 <td>@if($child->status) 已启用 @else <span class="red">未启用</span> @endif</td>
@@ -69,7 +69,7 @@
         <p><input type="text" onkeyup="searchUsers(this.value)" value=""  id="searchName" placeholder="搜索"></p>
         <div id="users">
           <p data-template>
-            @{{ name }} <a href="" class="grey">选定</a>
+            @{{ name }} <a href="{{ route('setUser') }}?user_id=@{{ id }}&group_id=@{{ group_id }}&role_id=@{{ role_id }}" class="grey">选定</a>
           </p>
         </div>
         <img id="loading" src="/images/loading.gif">

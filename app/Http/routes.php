@@ -68,6 +68,7 @@ Route::group(['middleware' => ['web']], function () {
             // 指派组长api
             Route::get('users', ['as' => 'getUsers', 'uses' => 'Admin\GroupController@getUsers']);
             Route::get('searchUsers', ['as' => 'searchUsers', 'uses' => 'Admin\GroupController@searchUsers']);
+            Route::get('setUser', ['as' => 'setUser', 'uses' => 'Admin\GroupController@setUser']);
 
         });
 
@@ -94,4 +95,13 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('logout', 'Auth\AuthController@logout');
 
     Route::get('/', 'HomeController@index');
+
+    // 组长管理
+    Route::group(['middleware' => 'groupAdmin', 'prefix' => 'groupAdmin'], function(){
+
+        Route::get('/', ['as' => 'groupAdmin', function(){
+            echo 1;
+        }]);
+        
+    });
 });

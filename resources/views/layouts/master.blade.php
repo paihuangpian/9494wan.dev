@@ -14,19 +14,19 @@
     <div class="container">
         <div class="header">
             <div class="b"></div>
-            <p><img src="/images/level-1.gif" ></p>
+            <p><img src="/images/{{ Auth::user()->sign }}" ></p>
             <h2>欢迎亲爱的   <span class="origin">{{ Auth::user()->name }}</span> 同学回家，您当前等级为 <span class="red">士兵</span>，感谢您为共同梦想辛劳付出！</h2>
             <p><a href="">一张图告诉你：当一个司令有多可怕。</a></p>
         </div>
         
         <div class="nav @if(Auth::user()->role_id == 1) zuzhang @endif" >
             <div class="b"></div>
-            <a href="" class="active">主页</a>
+            <a href="" @if(in_array(Route::currentRouteName(), ['/'])) class="active" @endif>主页</a>
             <a href="">排行</a>
             <a href="">成长计划</a>
             <a href="">绝对发言权</a>
             @if(Auth::user()->role_id == 1)
-                <a href="">组长管理</a>
+                <a href="{{ route('groupAdmin') }}">组长管理</a>
             @endif
         </div>
 

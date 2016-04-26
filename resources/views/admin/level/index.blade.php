@@ -57,7 +57,4 @@
         });
     </script>
     <!-- 删除 modal end-->
-    <div class="action">
-        翻页
-    </div>
 @endsection

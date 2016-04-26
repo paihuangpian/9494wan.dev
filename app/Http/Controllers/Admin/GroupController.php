@@ -122,12 +122,13 @@ class GroupController extends Controller
         return redirect()->back();
     }
 
+    // 暂时不弄这个
     public function getUsers(){
         $users = \DB::table('users')->get();
         return response()->json($users);
     }
 
-     public function searchUsers(Request $request){
+    public function searchUsers(Request $request){
         $users = \DB::table('users')->where('name', 'like', '%' . $request->input('name') . '%')->get();
         if(!$users){
             $users = [
@@ -135,5 +136,22 @@ class GroupController extends Controller
             ];
         }
         return response()->json($users);
+    }
+
+    public function setUser(){
+        // $user_id = $_GET['user_id'];
+        // $group_id = $_GET['group_id'];
+        // $role_id = $_GET['role_id'];
+
+        // if($role_id == 1){
+           
+        //     \DB::table('users')->whereGroup_idAndRole_id($group_id, $role_id)->update(
+        //             ['role_id' => 2]
+        //         );
+        //      \DB::table('users')->where('id', $user_id)->update(
+        //             ['group_id' => $group_id]
+        //         );
+        // }
+        return redirect()->back();
     }
 }

@@ -49,9 +49,15 @@ class UserController extends Controller
         $insert['password'] = bcrypt($password);
         $insert['random'] = $password;
         $insert['created_at'] = date('Y-m-d H:i:s');
-    	\DB::table('users')->insert(
+
+    	$user_id = \DB::table('users')->insertGetId(
             $insert
 		);
+
+        // 插入等级：默认添加一个新员工等级为士兵
+        \DB::table('user_levels')->insert(
+            ['user_id' => $user_id, 'level_id' => 1]
+        );
 
 		return redirect()->back()->withErrors(['errors' => '刚才所添加的用户密码是：' . $password]);
     }
