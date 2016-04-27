@@ -14,7 +14,7 @@
     <div class="container">
         <div class="header">
             <div class="b"></div>
-            <p><img src="/images/{{ Auth::user()->sign }}" ></p>
+            <p><img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('user_levels')->where('user_id', Auth::user()->id)->first()->level_id)->sign }}" ></p>
             <h2>欢迎亲爱的   <span class="origin">{{ Auth::user()->name }}</span> 同学回家，您当前等级为 <span class="red">士兵</span>，感谢您为共同梦想辛劳付出！</h2>
             <p><a href="">一张图告诉你：当一个司令有多可怕。</a></p>
         </div>
@@ -26,10 +26,18 @@
             <a href="">成长计划</a>
             <a href="">绝对发言权</a>
             @if(Auth::user()->role_id == 1)
-                <a href="{{ route('groupAdmin') }}">组长管理</a>
+                <a href="{{ route('groupAdmin') }}" @if(in_array(Route::currentRouteName(), ['groupAdmin'])) class="active" @endif>组长管理</a>
             @endif
         </div>
-
+        <!-- 消息 -->
+        @if (count($errors) > 0 )
+            <div class="errors" style="margin-top: 10px">
+                <i class="fa fa-exclamation-circle"></i>
+                @foreach ($errors->all() as $error)
+                    {{ $error }}
+                @endforeach
+            </div>
+        @endif
         <div class="main">
             <div class="b"></div>
             @yield('content')

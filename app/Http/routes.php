@@ -94,14 +94,17 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('login', 'Auth\AuthController@login');
     Route::get('logout', 'Auth\AuthController@logout');
 
-    Route::get('/', 'HomeController@index');
+    Route::group(['middleware' => 'auth'], function(){
 
-    // 组长管理
-    Route::group(['middleware' => 'groupAdmin', 'prefix' => 'groupAdmin'], function(){
+        Route::get('/', 'HomeController@index');
 
-        Route::get('/', ['as' => 'groupAdmin', function(){
-            echo 1;
-        }]);
-        
+        // 组长管理
+        Route::group(['middleware' => 'groupAdmin', 'prefix' => 'groupAdmin'], function(){
+            Route::get('/', ['as' => 'groupAdmin', 'uses' => 'GroupAdminController@index']);
+            Route::get('add', ['as' => 'addRecord', 'uses' => 'GroupAdminController@addRecord']);
+            Route::post('add', ['as' => 'postRecord', 'uses' => 'GroupAdminController@postRecord']);
+        });
     });
+    
+
 });
