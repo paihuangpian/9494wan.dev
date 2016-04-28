@@ -8,7 +8,7 @@
         昨日战绩：{{ $yesterday }}<span class="sep">/</span>
         本月战绩：{{ $current_month[0]->total }}<span class="sep">/</span>
         上月战绩：{{ $last_month[0]->total }}<span class="sep">/</span>
-        小组排行：2<span class="sep">/</span>
+        小组排行：{{ $rank }}<span class="sep">/</span>
         小组总战绩：{{ $total }}
     </p>
     
@@ -26,9 +26,9 @@
             <tr><th>组员</th><th>战绩</th><th>时间</th></tr>
             @foreach($records as $record)
                 <tr>
-                    <td>
-                        {{ \DB::table('users')->find($record->user_id)->name }}</td><td>{{ $record->recharge }}</td><td>{{ $record->created_at }}
-                    </td>
+                    <td>{{ \DB::table('users')->find($record->user_id)->name }}</td>
+                    <td>{{ $record->recharge }}</td>
+                    <td>{{ date('Y-m-d', time($record->created_at)) }}</td>
                 </tr>
             @endforeach
         </table>

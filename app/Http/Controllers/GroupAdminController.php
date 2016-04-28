@@ -27,14 +27,17 @@ class GroupAdminController extends Controller
     	// 	$yesterday += \DB::table('records')->whereUser_idAndCreated_at($user->id, $yesterday_time)->sum('recharge');
     	// 	$records = array_merge(\DB::table('records')->where('user_id', $user->id)->limit(10)->get(), $records);
     	// }
+
     	$total = \DB::table('records')->where('group_id', $group_id)->sum('recharge');
     	$records = \DB::table('records')->where('group_id', $group_id)->limit(10)->get();
     	$today = \DB::table('records')->whereGroup_idAndCreated_at($group_id, date('Y-m-d'))->sum('recharge');
     	$current_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') and group_id = " . $group_id);
     	$last_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m')and group_id = " . $group_id);
 
-    	$rank_array = \DB::select("select sum(recharge) as total from records order by total");
-    	
+    	$rank_array = \DB::select("select group_id, sum(recharge) as total, (@i := @i + 1) rank from records,(SELECT @i:=0) AS it where group_id = " . $group_id ." group by group_id order by total");
+
+    	$rank = $rank_array[0]->rank;
+
     	return view('groupAdmin', [
     		'users' => $users, 
     		'total' => $total, 
@@ -42,7 +45,8 @@ class GroupAdminController extends Controller
     		'records' => $records, 
     		'yesterday' => $yesterday,
     		'current_month' => $current_month,
-    		'last_month' => $last_month
+    		'last_month' => $last_month,
+    		'rank' => $rank
     		]);
     }
 
