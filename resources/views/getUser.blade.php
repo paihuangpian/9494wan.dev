@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <h2>基本</h2>
+    <h2>基本 (<span class="origin">{{ $user->name }}</span>)</h2>
     <p>
         <span class="origin">入伍：</span>{{ date('Y-m-d', time($user->created_at)) }}<span class="sep">/</span>
         <span class="origin">等级：</span>{{ \DB::table('levels')->find(\DB::table('user_levels')->where('user_id', $user->id)->orderBy('id', 'desc')->first()->level_id)->name }}<span class="sep">/</span>

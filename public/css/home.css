@@ -1,6 +1,7 @@
 body{
 	background: url(/images/1-2.jpg) no-repeat #f4f4f4;
 	background-size: cover;
+	background-attachment:fixed
 }
 .b{
 	position: absolute;
@@ -14,7 +15,7 @@ body{
 }
 a{
     text-decoration: none;
-    color: #fff;
+    color: #a3a3a3;
 }
 ul{
     list-style: none;
@@ -66,13 +67,13 @@ h2{
 .nav a{
 	display: inline-block;
 	line-height: 50px;
-	width: 240px;
+	width: 192px;
 	float: left;
 	text-align: center;
 	color: #fff;
 }
 .zuzhang a{
-	width: 192px;
+	width: 160px;
 }
 .nav a:hover,.nav a.active{
 	color: #ff7518;
@@ -104,7 +105,10 @@ table a{
 }
 table th, table td{
     text-align: left;
-    border: solid 1px #e7e7e7;
+    border: solid 1px #333;
     text-indent: 10px;
 	padding: 5px 0;
+}
+.errors{
+	color: red;
 }

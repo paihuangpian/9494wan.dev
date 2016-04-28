@@ -96,15 +96,36 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::group(['middleware' => 'auth'], function(){
 
-        Route::get('/', 'HomeController@index');
+        Route::get('/', ['as' => '/', 'uses' => 'HomeController@index']);
 
         // 组长管理
         Route::group(['middleware' => 'groupAdmin', 'prefix' => 'groupAdmin'], function(){
             Route::get('/', ['as' => 'groupAdmin', 'uses' => 'GroupAdminController@index']);
             Route::get('add', ['as' => 'addRecord', 'uses' => 'GroupAdminController@addRecord']);
             Route::post('add', ['as' => 'postRecord', 'uses' => 'GroupAdminController@postRecord']);
-        });
-    });
-    
 
+            // 组员战绩
+            Route::get('user/{user_id}', ['as' => 'getUser', 'uses' => 'GroupAdminController@getUser']);
+        });
+
+        // 成长计划
+        Route::get('plan', ['as' => 'plan', function(){
+            $levels = \DB::table('levels')->where('status', 1)->orderBy('experience')->get();
+            return view('plan', ['levels' => $levels]);
+        }]);
+
+        // 排行榜
+        Route::get('rank', ['as' => 'rank', function(){
+            $persons = \DB::select("select *, (@i := @i + 1) rank from users,(SELECT @i:=0) AS it order by experience desc");
+            $groups = \DB::select("select group_id, sum(recharge) as total, (@i := @i + 1) rank from records,(SELECT @i:=0) AS it group by group_id order by total desc");
+            
+            return view('rank', ['persons' => $persons, 'groups' => $groups]);
+        }]);
+
+        // 留言板
+        Route::get('book', ['as' => 'book', function(){
+            return view('book');
+        }]);
+        Route::post('book', ['as' => 'postBook', 'uses' => 'BookController@postBook']);
+    });
 });
