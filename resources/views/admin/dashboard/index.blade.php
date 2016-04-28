@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('sidebar')
-    <!-- @include('admin.dashboard.sidebar') -->
+
 @endsection
 
 @section('content')

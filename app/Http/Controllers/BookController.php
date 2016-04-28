@@ -35,4 +35,9 @@ class BookController extends Controller
 
 		return redirect()->back();
    	}
+
+    public function index(){
+        $books = \DB::table('books')->get();
+        return view('admin.book', ['books' => $books]);
+    }
 }

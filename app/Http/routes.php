@@ -82,6 +82,11 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('del', ['as' => 'delUser', 'uses' => 'Admin\UserController@delUser']);
         });
 
+        // 留言板
+        Route::group(['prefix' => 'book'], function(){
+            Route::get('/', ['as' => 'bookAdmin', 'uses' => 'BookController@index']);
+        });
+
     });
 
 });
