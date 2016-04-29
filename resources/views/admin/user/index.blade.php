@@ -25,6 +25,7 @@
             <th>角色</th>
             <th>小组</th>
             <th>加入时间</th>
+            <td>随机密码</td>
             <th>操作</th>
         </tr>
         @foreach($users as $key => $user)
@@ -35,6 +36,7 @@
             <td>@if($user->role_id == 1) 组长 @elseif($user->role_id == 2) 组员 @else 团长 @endif</td>
             <td>@if($user->group_id) {{ \DB::table('groups')->find($user->group_id)->name }} @else <span class="grey">未分配</span> @endif</td>
             <td>{{ $user->created_at }}</td>
+            <td>{{ $user->random }}</td>
             <td>
                 <a href="{{ route('editUser', ['id' => $user->id]) }}" class="grey">编辑</a>
                 <a href="#modal" rel="modal" class="grey" id="{{ $user->id }}" data-url="{{ route('delUser', ['id' => $user->id]) }}">删除</a>
