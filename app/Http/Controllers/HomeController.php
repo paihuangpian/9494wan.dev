@@ -58,7 +58,7 @@ class HomeController extends Controller
         $next_level = array_first($next_levels, function($key, $value){
             return $value;
         });
-        $need_experience = $next_level->experience - $user->experience;
+        @$need_experience = $next_level->experience - $user->experience;
         
         return view('home', [
             'user' => $user, 
