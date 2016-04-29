@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html style="height: 100%;">
 <head>
+	<meta charset="utf-8">
 	<title></title>
 </head>
 <body style="text-align:center;padding:0;margin:0;color: #fff;background: url('images/404-1.jpg') no-repeat;background-size: cover;position: relative;height: 100%;">
