@@ -21,13 +21,13 @@
                 <li><a href="{{ route('group') }}" @if(in_array(Route::currentRouteName(), ['group', 'addGroup', 'editGroup'])) class="active" @endif>军团</a></li>
                 <li><a href="{{ route('user') }}" @if(Route::currentRouteName() == 'user') class="active" @endif>员工</a></li>
                 <li><a href="{{ route('bookAdmin') }}" @if(in_array(Route::currentRouteName(), ['bookAdmin'])) class="active" @endif>留言板</a></li>
-                <li><a href="">文章</a></li>
+                <!-- <li><a href="">文章</a></li> -->
             </ul>
 
             <div class="admin">
                 <a href="" class="admin-name">{{ Auth::guard('admin')->user()->name }} <i class="fa fa-chevron-down"></i></a>
                 <div class="admin-drop">
-                    <a href="{{ url('admin/password/reset') }}">更改密码</a>
+                    <!-- <a href="{{ url('admin/password/reset') }}">更改密码</a> -->
                     <a href="{{ url('admin/logout') }}">退出</a>
                 </div>
             </div>

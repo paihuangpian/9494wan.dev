@@ -18,13 +18,13 @@
                 </td>
             </tr>
         @endforeach
-        <tr>
+        <!-- <tr>
             <td>
                 <span>服务器时间</span>
                 <span class="sep">:</span>
                 <span class="green" id="result"></span>
             </td>
-        </tr>
+        </tr> -->
     </table>
     <script type="text/javascript">
         if(typeof(EventSource) !== "undefined" ){

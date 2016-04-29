@@ -46,7 +46,7 @@ class GroupAdminController extends Controller
     	// }
     	return view('groupAdmin', [
     		'users' => $users, 
-    		'total' => $total, 
+    		'total' => $total,
     		'today' => $today,
     		'records' => $records, 
     		'yesterday' => $yesterday,
@@ -100,13 +100,14 @@ class GroupAdminController extends Controller
     	\DB::table('users')->where('id', $request->input('user_id'))->increment('experience', $request->input('recharge'));
     	\DB::table('users')->where('id', $request->input('user_id'))->increment('scores', $request->input('recharge'));
 
-   		// 更新经验以后对比下一个等级，判断是否升级
-    	if(\DB::table("users")->find($request->input('user_id'))->experience >= $next_level->experience){
-    		\DB::table('user_levels')->insert(
-            	['user_id' => $request->input('user_id'), 'level_id' => $next_level->id, 'created_at' => date('Y-m-d')]
-        	);
-    	}
-
+        if($next_level){
+       		// 更新经验以后对比下一个等级，判断是否升级
+        	if(\DB::table("users")->find($request->input('user_id'))->experience >= $next_level->experience){
+        		\DB::table('user_levels')->insert(
+                	['user_id' => $request->input('user_id'), 'level_id' => $next_level->id, 'created_at' => date('Y-m-d')]
+            	);
+        	}
+        }
 		return redirect()->back();
     }
 

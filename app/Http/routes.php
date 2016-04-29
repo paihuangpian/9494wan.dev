@@ -80,6 +80,9 @@ Route::group(['middleware' => ['web']], function () {
             Route::get('edit', ['as' => 'editUser', 'uses' => 'Admin\UserController@editUser']);
             Route::post('edit', ['as' => 'updateUser', 'uses' => 'Admin\UserController@updateUser']);
             Route::get('del', ['as' => 'delUser', 'uses' => 'Admin\UserController@delUser']);
+
+            // 战绩
+            Route::get('experience/{user_id}', ['as' => 'getExperience', 'uses' => 'Admin\UserController@getExperience']);
         });
 
         // 留言板
