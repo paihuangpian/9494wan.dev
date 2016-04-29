@@ -45,7 +45,7 @@
 			        @foreach($persons as $key => $person)
 				        <tr>
 				            <td>{{ $key + 1 }}</td>
-				            <td><img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('user_levels')->where('user_id', Auth::user()->id)->orderBy('id', 'desc')->first()->level_id)->sign }}" width="30"></td>
+				            <td><img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('user_levels')->where('user_id', $person->id)->orderBy('id', 'desc')->first()->level_id)->sign }}" width="30"></td>
 				            <td>{{ $person->name }} </td>
 				            <td>{{ $person->experience }}</td>
 				        </tr>
