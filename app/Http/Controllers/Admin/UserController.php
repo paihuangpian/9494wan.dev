@@ -95,6 +95,8 @@ class UserController extends Controller
     }
 
     public function delUser(Request $request){
+        \DB::table('user_levels')->where('user_id', $request->input('id'))->delete();
+        \DB::table('records')->where('user_id', $request->input('id'))->delete();
         \DB::table('users')->delete($request->input('id'));
         return redirect()->back();
     }
