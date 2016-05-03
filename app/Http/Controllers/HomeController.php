@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {   
         $user = \Auth::user();
-
+        
         // 排行
         $rank_array = \DB::select("select *, (@i := @i + 1) rank from users,(SELECT @i:=0) AS it order by experience desc");
 
