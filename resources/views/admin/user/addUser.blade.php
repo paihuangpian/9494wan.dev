@@ -11,7 +11,7 @@
                 <td width="200">姓名</td>
                 <td>
                     <input type="text" name="name" value="{{ old('name') }}">
-                <span class="grey"> 对应的密码是保存之后随机生成的六位密码，请注意上方红色条提示中的密码，请拿笔记住它。</span></td>
+                <span class="grey"> 对应的密码是保存之后随机生成的六位密码。</span></td>
             </tr>
             <tr>
                 <!-- <td width="200">用户名</td><td><input type="text" name="username" value=""></td> -->
@@ -45,6 +45,13 @@
                 <td>
                     <input type="radio" name="status" value="1" checked="checked"> 在职
                     <input type="radio" name="status" value="0"> 离职
+                </td>
+            </tr>
+            <tr>
+                <td width="200">经验</td>
+                <td>
+                    <input type="text" name="experience" value="">
+                    <span class="grey"> 请参考等级经验值。</span>
                 </td>
             </tr>
             <tr>

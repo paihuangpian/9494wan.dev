@@ -49,6 +49,13 @@
                 </td>
             </tr>
             <tr>
+                <td width="200">经验</td>
+                <td>
+                    <input type="text" name="experience" value="{{ old('experience', $user->experience) }}">
+                    <span class="grey"> 请参考等级经验值。</span>
+                </td>
+            </tr>
+            <tr>
                 <td width="200"></td>
                 <td><button type="submit" class="btn-info">保存</button></td>
             </tr>
