@@ -13,7 +13,7 @@ class AddExperienceToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('experience'); // 积分
+            $table->float('experience'); // 经验
         });
     }
 

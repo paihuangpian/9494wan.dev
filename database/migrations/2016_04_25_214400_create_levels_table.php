@@ -16,7 +16,7 @@ class CreateLevelsTable extends Migration
             $table->increments('id');
             $table->string('name'); // 等级名称
             $table->string('sign'); // 标志
-            $table->integer('experience'); // 所需经验
+            $table->float('experience'); // 所需经验
             $table->integer('attenuation'); // 衰减值
             $table->integer('wages'); // 等级工资
             $table->float('commission'); // 消费奖金百分比

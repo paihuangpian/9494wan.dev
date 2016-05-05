@@ -54,6 +54,13 @@ class UserController extends Controller
             $insert
 		);
 
+        // 判断用户经验值，确定等级
+        $experience = $request->input('experience');
+        $lt = \DB::table('levels')->where('experience', '<', $experience); // 小于
+        $gt = \DB::table('levels')->where('experience', '<', $experience); // 大于
+        // dump($gt);
+        // dd($lt);
+
         // 插入等级：默认添加一个新员工等级为士兵
         \DB::table('user_levels')->insert(
             ['user_id' => $user_id, 'level_id' => 1]
