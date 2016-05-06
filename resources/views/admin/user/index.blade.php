@@ -31,7 +31,13 @@
             <td>{{ $user->created_at }}</td>
             <td>{{ $user->random }}</td>
             <td>{{ $user->experience }}</td>
-            <td>{{ \DB::table('levels')->find($user->level_id)->name }}</td>
+            <td>
+                @if($user->level_id)
+                    {{ \DB::table('levels')->find($user->level_id)->name }}
+                @else
+                    未初始化数据
+                @endif
+            </td>
             <td>
                 <a href="{{ route('editUser', ['id' => $user->id]) }}" class="grey">编辑</a>
                 <a href="#modal" rel="modal" class="grey" id="{{ $user->id }}" data-url="{{ route('delUser', ['id' => $user->id]) }}">删除</a>

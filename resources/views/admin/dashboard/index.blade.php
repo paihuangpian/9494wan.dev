@@ -45,8 +45,12 @@
 			        @foreach($persons as $key => $person)
 				        <tr>
 				            <td>{{ $key + 1 }}</td>
-				            <td><img src="/images/sign/{{ \DB::table('levels')->find($person->level_id)->sign }}" width="30"></td>
-				            <td>{{ $person->name }} </td>
+				            <td>
+                                @if($person->level_id)
+                                    <img src="/images/sign/{{ \DB::table('levels')->find($person->level_id)->sign }}" width="30">
+                                @endif
+                            </td>
+				            <td>{{ $person->name }}</td>
 				            <td>{{ $person->experience }}</td>
 				        </tr>
 			        @endforeach

@@ -14,8 +14,8 @@
     <div class="container">
         <div class="header">
             <div class="b"></div>
-            <p><img src="/images/sign/{{ \DB::table('levels')->find(Auth::user()->level_id)->sign }}" ></p>
-            <h2>欢迎亲爱的  <span class="origin">{{ Auth::user()->name }}</span> 同学回家，您当前等级为 <span class="red">{{ \DB::table('levels')->find(Auth::user()->level_id)->name }}</span>，感谢您为共同梦想辛劳付出！</h2>
+            <p>@if(Auth::user()->level_id)<img src="/images/sign/{{ \DB::table('levels')->find(Auth::user()->level_id)->sign }}" >@endif</p>
+            <h2>欢迎亲爱的  <span class="origin">{{ Auth::user()->name }}</span> 同学回家，您当前等级为 @if(Auth::user()->level_id)<span class="red">{{ \DB::table('levels')->find(Auth::user()->level_id)->name }}</span>@endif，感谢您为共同梦想辛劳付出！</h2>
             <p><a href="">一张图告诉你：当一个司令有多可怕。</a></p>
         </div>
         

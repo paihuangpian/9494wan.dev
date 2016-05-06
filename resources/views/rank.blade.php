@@ -16,7 +16,7 @@
         @foreach($persons as $key => $person)
         <tr>
             <td>@if(($key + 1) == 1) 冠军 @elseif(($key + 1) == 2) 亚军 @elseif(($key + 1) == 3) 季军 @else  {{ $key + 1 }}  @endif</td>
-            <td><img src="/images/sign/{{ \DB::table('levels')->find($person->level_id)->sign }}" width="30"></td>
+            <td>@if($person->level_id)<img src="/images/sign/{{ \DB::table('levels')->find($person->level_id)->sign }}" width="30">@endif</td>
             <td>{{ $person->name }} </td>
             <td>{{ $person->experience }}</td>
         </tr>

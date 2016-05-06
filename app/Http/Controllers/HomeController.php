@@ -46,22 +46,23 @@ class HomeController extends Controller
 
 
         // 获取当前等级的下一个等级
-        $level_current = \DB::table('levels')->find($user->level_id);
-        $levels = \DB::table('levels')->get();
+        if($user->level_id){
+            $level_current = \DB::table('levels')->find($user->level_id);
+            $levels = \DB::table('levels')->get();
 
-        $next_levels = [];
-        foreach ($levels as $key => $level) {
-            if($level->experience > $level_current->experience){
-                $next_levels[] = $level;
+            $next_levels = [];
+            foreach ($levels as $key => $level) {
+                if($level->experience > $level_current->experience){
+                    $next_levels[] = $level;
+                }
             }
+            
+            $next_level = array_first($next_levels, function($key, $value){
+                return $value;
+            });
         }
-        
-        $next_level = array_first($next_levels, function($key, $value){
-            return $value;
-        });
-
         @$need_experience = $next_level->experience - $user->experience;
-
+        
         return view('home', [
             'user' => $user, 
             'rank' => $rank,

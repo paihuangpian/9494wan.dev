@@ -4,7 +4,7 @@
     <h2>基本 (<span class="origin">{{ $user->name }}</span>)</h2>
     <p>
         <span class="origin">入伍：</span>{{ date('Y-m-d', time($user->created_at)) }}<span class="sep">/</span>
-        <span class="origin">等级：</span>{{ \DB::table('levels')->find($user->level_id)->name }}<span class="sep">/</span>
+        <span class="origin">等级：</span>@if($user->level_id){{ \DB::table('levels')->find($user->level_id)->name }}@endif<span class="sep">/</span>
         <span class="origin">小组：</span>@if($user->group_id) {{ \DB::table('groups')->find($user->group_id)->name }} @else 未分配 @endif<span class="sep">/</span>
         <span class="origin">积分：</span><a href="">{{ $user->scores }}</a><span class="sep">/</span>
         <span class="origin">排行：</span>{{ $rank }}
