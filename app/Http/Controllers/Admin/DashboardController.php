@@ -16,11 +16,14 @@ class DashboardController extends Controller
     	$persons = \DB::select("select *, (@i := @i + 1) rank from users,(SELECT @i:=0) AS it order by experience desc");
         $groups = \DB::select("select group_id, sum(recharge) as total, (@i := @i + 1) rank from records,(SELECT @i:=0) AS it group by group_id order by total desc");
 
+        $records = \DB::table('records')->get();
+
     	return view('admin.dashboard.index', [
     		'current_month' => $current_month,
     		'last_month' => $last_month,
     		'persons' => $persons,
-    		'groups' => $groups
+    		'groups' => $groups,
+            'records' => $records
     	]);
     }
 }

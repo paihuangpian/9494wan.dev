@@ -83,6 +83,7 @@ Route::group(['middleware' => ['web']], function () {
 
             // 战绩
             Route::get('experience/{user_id}', ['as' => 'getExperience', 'uses' => 'Admin\UserController@getExperience']);
+            Route::get('delPerience',  ['as' => 'delExperience', 'uses' => 'Admin\UserController@delExperience']);
         });
 
         // 留言板
@@ -124,10 +125,13 @@ Route::group(['middleware' => 'web'], function () {
 
         // 排行榜
         Route::get('rank', ['as' => 'rank', function(){
-            $persons = \DB::select("select *, (@i := @i + 1) rank from users,(SELECT @i:=0) AS it order by experience desc");
+            $persons = \DB::select("select *, (@i := @i + 1) rank from users,(SELECT @i:=0) AS it order by experience desc limit 0, 10");
             $groups = \DB::select("select group_id, sum(recharge) as total, (@i := @i + 1) rank from records,(SELECT @i:=0) AS it group by group_id order by total desc");
-            
-            return view('rank', ['persons' => $persons, 'groups' => $groups]);
+            $groups = \DB::select("select group_id, sum(recharge) as total from records group by group_id order by total desc");
+
+            $current_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m')");
+            $last_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m')");
+            return view('rank', ['persons' => $persons, 'groups' => $groups, 'current_month' => $current_month, 'last_month' => $last_month]);
         }]);
 
         // 留言板

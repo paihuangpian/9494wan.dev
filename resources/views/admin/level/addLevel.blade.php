@@ -17,6 +17,9 @@
                 <td width="200">所需经验</td><td><input type="text" name="experience" value=""></td>
             </tr>
             <tr>
+                <td width="200">所需经验最大值</td><td><input type="text" name="experience_max" value=""> <span class="origin">比如更高一级的经验值是1000，则此值应该是999.99</span></td>
+            </tr>
+            <tr>
                 <td width="200">衰减值</td><td><input type="text" name="attenuation" value=""></td>
             </tr>
             <tr>

@@ -32,12 +32,12 @@ class UserController extends Controller
     	$info = [
     		'name.required' => '姓名不能为空',
     		'name.unique' => '姓名重复了',
-    		'role_id.required' => '角色不能为空'
+    		'role_id.required' => '角色不能为空',
     	];
 
 	    $validator = \Validator::make($request->all(), [
         	'name' => 'required|unique:users',
-        	'role_id' => 'required'
+        	'role_id' => 'required',
 	    ], $info);
 
 	    if ($validator->fails()) {
@@ -50,21 +50,15 @@ class UserController extends Controller
         $insert['random'] = $password;
         $insert['created_at'] = date('Y-m-d H:i:s');
 
+        // 判断用户经验值，确定等级
+        $experience = $request->input('experience');
+        $level = \DB::select("select * from levels where " . $experience . " >= experience and " . $experience . " <= experience_max");
+
+        $insert['level_id'] = $level[0]->id;
+
     	$user_id = \DB::table('users')->insertGetId(
             $insert
 		);
-
-        // 判断用户经验值，确定等级
-        $experience = $request->input('experience');
-        $lt = \DB::table('levels')->where('experience', '<', $experience); // 小于
-        $gt = \DB::table('levels')->where('experience', '<', $experience); // 大于
-        // dump($gt);
-        // dd($lt);
-
-        // 插入等级：默认添加一个新员工等级为士兵
-        \DB::table('user_levels')->insert(
-            ['user_id' => $user_id, 'level_id' => 1]
-        );
 
 		return redirect()->back()->withErrors(['errors' => '刚才所添加的用户密码是：' . $password]);
     }
@@ -90,15 +84,21 @@ class UserController extends Controller
         }
 
         $update = array_except($request->all(), ['_token']);
-        $password = str_random(6);
-        $update['password'] = bcrypt($password);
-        $update['random'] = $password;
+        
         $update['updated_at'] = date('Y-m-d H:i:s');
+
+        // 判断用户经验值，确定等级
+        $experience = $request->input('experience');
+        $level = \DB::select("select * from levels where " . $experience . " >= experience and " . $experience . " <= experience_max");
+
+        $update['level_id'] = $level[0]->id;
+        
+
         \DB::table('users')->where('id', $request->input('id'))->update(
             $update
         );
 
-        return redirect()->back()->withErrors(['errors' => '用户密码变更为：' . $password]);
+        return redirect()->back();
     }
 
     public function delUser(Request $request){
@@ -130,7 +130,7 @@ class UserController extends Controller
         $last_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m')and user_id = " . $user->id);
 
         // 获取当前等级的下一个等级
-        $level_current = \DB::table('levels')->find(\DB::table('user_levels')->where('user_id', $user->id)->orderBy('id', 'desc')->first()->level_id);
+        $level_current = \DB::table('levels')->find($user->level_id);
         $levels = \DB::table('levels')->get();
 
         $next_levels = [];
@@ -155,5 +155,10 @@ class UserController extends Controller
             'last_month' => $last_month,
             'need_experience' => $need_experience
             ]);
+    }
+
+    public function delExperience(Request $request){
+        \DB::table('records')->delete($request->input('id'));
+        return redirect()->back();
     }
 }

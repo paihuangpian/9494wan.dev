@@ -4,22 +4,13 @@
     <div class="title">
         <h2>员工</h2> <a href="{{ route('addUser') }}" class="btn-info">新增</a>
     </div>
-    <!-- <div class="filter">
-        <a href="{{ route('user') }}" class="active">全部<small>({{ count($users) }})</small></a><span class="sep">/</span>
-        <a href="#">在职<small>({{ \DB::table('users')->whereStatus(1)->count() }})</small></a><span class="sep">/</span>
-        <a href="#">离职<small>({{ \DB::table('users')->whereStatus(0)->count() }})</small></a>
-    </div> -->
     <div class="action">
-        <!-- 全选：
-        <select class="" name="">
-            <option value="option">删除</option>
-        </select> -->
         <input type="text" value="{{ $key or ''}}" placeholder="姓名" id="key">
         <a class="btn-info" href="javascript:searchUsers($('#key').val())">搜索</a>
     </div>
     <table>
         <tr>
-            <!-- <th width="30"><input type="checkbox" name="name" value=""></th> -->
+            <th width="30"><input type="checkbox" name="name" value=""></th>
             <th>序号</th>
             <th>姓名</th>
             <th>角色</th>
@@ -27,11 +18,12 @@
             <th>加入时间</th>
             <th>随机密码</th>
             <th>经验值</th>
+            <th>等级</th>
             <th>操作</th>
         </tr>
         @foreach($users as $key => $user)
         <tr>
-            <!-- <td><input type="checkbox" name="name" value=""></td> -->
+            <td><input type="checkbox" name="name" value=""></td>
             <td>{{ $key + 1 }}</td>
             <td>{{ $user->name }}</td>
             <td>@if($user->role_id == 1) 组长 @elseif($user->role_id == 2) 组员 @else 团长 @endif</td>
@@ -39,6 +31,7 @@
             <td>{{ $user->created_at }}</td>
             <td>{{ $user->random }}</td>
             <td>{{ $user->experience }}</td>
+            <td>{{ \DB::table('levels')->find($user->level_id)->name }}</td>
             <td>
                 <a href="{{ route('editUser', ['id' => $user->id]) }}" class="grey">编辑</a>
                 <a href="#modal" rel="modal" class="grey" id="{{ $user->id }}" data-url="{{ route('delUser', ['id' => $user->id]) }}">删除</a>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DelEmailFromUsersTable extends Migration
+class AddLevelIdToUsersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class DelEmailFromUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('email');
+            $table->integer('level_id'); // 等级
         });
     }
 
@@ -25,7 +25,7 @@ class DelEmailFromUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->unique();
+            $table->dropColumn('level_id');
         });
     }
 }

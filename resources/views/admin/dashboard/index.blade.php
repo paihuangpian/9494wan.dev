@@ -45,7 +45,7 @@
 			        @foreach($persons as $key => $person)
 				        <tr>
 				            <td>{{ $key + 1 }}</td>
-				            <td><img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('user_levels')->where('user_id', $person->id)->orderBy('id', 'desc')->first()->level_id)->sign }}" width="30"></td>
+				            <td><img src="/images/sign/{{ \DB::table('levels')->find($person->level_id)->sign }}" width="30"></td>
 				            <td>{{ $person->name }} </td>
 				            <td>{{ $person->experience }}</td>
 				        </tr>
@@ -56,12 +56,27 @@
 	    			<tr><th>排行</th><th>军团</th><th>总战绩</th></tr>
 			        @foreach($groups as $group)
 				        <tr>
-				        	<td>{{ $key + 1 }}</td>
-				            <td>{{ \DB::table('groups')->find($group->group_id)->name }}</td>
+				        	<td>{{ $group->rank }}</td>
+				            <td>@if($group->group_id) {{ \DB::table('groups')->find($group->group_id)->name }} @else 未知 @endif</td>
 				            <td>{{ $group->total }}</td>
 				        </tr>
 			        @endforeach
 	    		</table>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td width="200">战绩</td>
+    		<td style="padding: 10px;">
+    			<table>
+    				<tr><th>员工</th><th>战绩</th><th>时间</th></tr>
+    				@foreach($records as $record)
+    					<tr>
+    						<td>{{ \DB::table('users')->find($record->user_id)->name }}</td>
+    						<td>{{ $record->recharge }}</td>
+    						<td>{{ $record->created_at }}</td>
+    					</tr>
+    				@endforeach
+    			</table>
     		</td>
     	</tr>
     </table>

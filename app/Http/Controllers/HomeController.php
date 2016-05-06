@@ -46,7 +46,7 @@ class HomeController extends Controller
 
 
         // 获取当前等级的下一个等级
-        $level_current = \DB::table('levels')->find(\DB::table('user_levels')->where('user_id', $user->id)->orderBy('id', 'desc')->first()->level_id);
+        $level_current = \DB::table('levels')->find($user->level_id);
         $levels = \DB::table('levels')->get();
 
         $next_levels = [];
@@ -55,9 +55,11 @@ class HomeController extends Controller
                 $next_levels[] = $level;
             }
         }
+        
         $next_level = array_first($next_levels, function($key, $value){
             return $value;
         });
+
         @$need_experience = $next_level->experience - $user->experience;
 
         return view('home', [

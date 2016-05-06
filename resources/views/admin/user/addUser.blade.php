@@ -50,7 +50,7 @@
             <tr>
                 <td width="200">经验</td>
                 <td>
-                    <input type="text" name="experience" value="">
+                    <input type="text" name="experience" value="0">
                     <span class="grey"> 请参考等级经验值。</span>
                 </td>
             </tr>

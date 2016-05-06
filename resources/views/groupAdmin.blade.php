@@ -4,11 +4,11 @@
     
     <h2>小组</h2>
     <p>
-        今日战绩：<span class="origin">{{ $today }}</span><span class="sep">/</span>
-        昨日战绩：<span class="origin">{{ $yesterday }}</span><span class="sep">/</span>
-        本月战绩：<span class="origin">{{ $current_month[0]->total }}</span><span class="sep">/</span>
-        上月战绩：<span class="origin">@if($last_month[0]->total) {{ $last_month[0]->total }} @else 暂无 @endif</span><span class="sep">/</span>
-        <!-- 小组排行：<span class="origin"></span><span class="sep">/</span> -->
+        今日战绩：<span class="origin">{{ $today }}</span><span class="sep"></span>
+        昨日战绩：<span class="origin">{{ $yesterday }}</span><span class="sep"></span>
+        本月战绩：<span class="origin">{{ $current_month[0]->total }}</span><span class="sep"></span>
+        上月战绩：<span class="origin">@if($last_month[0]->total) {{ $last_month[0]->total }} @else 暂无 @endif</span><span class="sep"></span>
+        小组排行：<span class="origin">{{ $rank }}</span><span class="sep"></span>
         小组总战绩：<span class="origin">{{ $total }}</span>
     </p>
     

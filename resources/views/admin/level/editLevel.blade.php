@@ -23,6 +23,9 @@
                 <td width="200">所需经验</td><td><input type="text" name="experience" value="{{ old('experience', $level->experience) }}"></td>
             </tr>
             <tr>
+                <td width="200">所需经验最大值</td><td><input type="text" name="experience_max" value="{{ old('experience_max', $level->experience_max) }}"> <span class="origin">比如更高一级的经验值是1000，则此值应该是999.99</span></td>
+            </tr>
+            <tr>
                 <td width="200">衰减值</td><td><input type="text" name="attenuation" value="{{ old('attenuation', $level->attenuation) }}"></td>
             </tr>
             <tr>

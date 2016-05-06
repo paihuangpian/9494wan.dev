@@ -13,6 +13,7 @@
             <th>等级名称</th>
             <th>等级标志</th>
             <th>等级经验</th>
+            <th>等级最高经验</th>
             <th>等级衰减值</th>
             <th>等级工资</th>
             <th>消费奖金百分比</th>
@@ -26,6 +27,7 @@
             <td>{{ $level->name }}</td>
             <td><img src="/images/sign/{{ $level->sign }}"></td>
             <td>{{ $level->experience }}</td>
+            <td>{{ $level->experience_max }}</td>
             <td>{{ $level->attenuation }}</td>
             <td>{{ $level->wages }}</td>
             <td>{{ $level->commission }}</td>
