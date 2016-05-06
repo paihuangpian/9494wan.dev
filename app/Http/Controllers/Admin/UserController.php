@@ -129,19 +129,21 @@ class UserController extends Controller
         $current_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') and user_id = " . $user->id);
         $last_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m')and user_id = " . $user->id);
 
-        // 获取当前等级的下一个等级
-        $level_current = \DB::table('levels')->find($user->level_id);
-        $levels = \DB::table('levels')->get();
+        if($user->level_id){
+            // 获取当前等级的下一个等级
+            $level_current = \DB::table('levels')->find($user->level_id);
+            $levels = \DB::table('levels')->get();
 
-        $next_levels = [];
-        foreach ($levels as $key => $level) {
-            if($level->experience > $level_current->experience){
-                $next_levels[] = $level;
+            $next_levels = [];
+            foreach ($levels as $key => $level) {
+                if($level->experience > $level_current->experience){
+                    $next_levels[] = $level;
+                }
             }
+            $next_level = array_first($next_levels, function($key, $value){
+                return $value;
+            });
         }
-        $next_level = array_first($next_levels, function($key, $value){
-            return $value;
-        });
         @$need_experience = $next_level->experience - $user->experience;
         
         return view('admin.user.getExperience', [
