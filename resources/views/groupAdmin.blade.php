@@ -19,7 +19,7 @@
         @endforeach
     </p>
     <h2>战绩
-        <a href="{{ route('addRecord') }}" style="position:absolute;margin-top:6px;font-size: 14px;margin-left: 10px;background-color: #ff7518;border:solid 1px #ee6407;padding: 2px 4px;color: #fff">+ 记战功</a>
+        <!-- <a href="{{ route('addRecord') }}" style="position:absolute;margin-top:6px;font-size: 14px;margin-left: 10px;background-color: #ff7518;border:solid 1px #ee6407;padding: 2px 4px;color: #fff">+ 记战功</a> -->
     </h2>
     <p>
         <table>

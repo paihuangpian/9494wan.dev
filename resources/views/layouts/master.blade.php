@@ -25,9 +25,9 @@
             <a href="{{ route('rank') }}" @if(in_array(Route::currentRouteName(), ['rank'])) class="active" @endif>排行</a>
             <a href="{{ route('plan') }}" @if(in_array(Route::currentRouteName(), ['plan'])) class="active" @endif>成长计划</a>
             <a href="{{ route('book') }}" @if(in_array(Route::currentRouteName(), ['book'])) class="active" @endif>绝对发言权</a>
-            <!-- @if(Auth::user()->role_id == 1)
+            @if(Auth::user()->role_id == 1)
                 <a href="{{ route('groupAdmin') }}" @if(in_array(Route::currentRouteName(), ['groupAdmin', 'addRecord', 'getUser'])) class="active" @endif>组长管理</a>
-            @endif -->
+            @endif
             <a href="{{ url('/logout') }}">退出系统</a>
         </div>
         <!-- 消息 -->
