@@ -69,7 +69,7 @@
 	    		</table>
     		</td>
     	</tr>
-    	<tr>
+    	<!-- <tr>
     		<td width="200">战绩</td>
     		<td style="padding: 10px;">
     			<table>
@@ -83,6 +83,6 @@
     				@endforeach
     			</table>
     		</td>
-    	</tr>
+    	</tr> -->
     </table>
 @endsection
