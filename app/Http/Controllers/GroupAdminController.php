@@ -120,4 +120,29 @@ class GroupAdminController extends Controller
             'last_month' => $last_month,
             ]);
     }
+
+    public function addUser(){
+        
+        $users = \DB::table('users')->where('group_id', 0)->get();
+        return view('addUser', ['users' => $users]);
+    }
+
+    public function postAddUser(Request $request){
+        $group_id = \Auth::user()->group_id;
+        $info = [
+            'user_id.required' => '一定要选择一个兵',
+        ];
+
+        $validator = \Validator::make($request->all(), [
+            'user_id' => 'required'
+        ], $info);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+      
+        \DB::table('users')->where('id', $request->input('user_id'))->update(['group_id' => $group_id]);
+
+        return redirect()->back();
+    }
 }

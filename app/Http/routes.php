@@ -115,6 +115,10 @@ Route::group(['middleware' => 'web'], function () {
 
             // 组员战绩
             Route::get('user/{user_id}', ['as' => 'getUser', 'uses' => 'GroupAdminController@getUser']);
+
+            // 添加组员
+            Route::get('addUser', ['as' => 'addUser', 'uses' => 'GroupAdminController@addUser']);
+            Route::post('addUser', ['as' => 'postAddUser', 'uses' => 'GroupAdminController@postAddUser']);
         });
 
         // 成长计划

@@ -12,7 +12,9 @@
         小组总战绩：<span class="origin">{{ $total }}</span>
     </p>
     
-    <h2>组员</h2>
+    <h2>组员
+    <a href="{{ route('addUser') }}" style="position:absolute;margin-top:6px;font-size: 14px;margin-left: 10px;background-color: #ff7518;border:solid 1px #ee6407;padding: 2px 4px;color: #fff">+ 招兵</a>
+    </h2>
     <p> 
         @foreach($users as $key => $user)
             <a href="{{ route('getUser', ['user_id' => $user->id]) }}">{{ $user->name }}</a>
