@@ -91,9 +91,10 @@
 <div style="width: 49%;float: right;">
     <div style="height: 50px;line-height: 50px;text-align: left;">军团榜</div>
     <table>
-        <tr><th>军团</th><th>总战功</th></tr>
-        @foreach($groups as $group)
+        <tr><th>榜</th><th>军团</th><th>总战功</th></tr>
+        @foreach($groups as $key => $group)
         <tr>
+            <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
             <td>@if($group->group_id) {{ \DB::table('groups')->find($group->group_id)->name }} @else 未知 @endif</td>
             <td>{{ $group->total }}</td>
         </tr>

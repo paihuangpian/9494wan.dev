@@ -7,7 +7,7 @@
     <table>
         <tr>
             <th>团号</th>
-            <th>名称(人数)</th>
+            <th>名称(人数)(组长)</th>
             <th>级别</th>
             <th>状态</th>
             <th>操作</th>
@@ -15,7 +15,19 @@
         @foreach($groups as $key => $group)
         <tr>
             <td>{{ $key + 1 }}</td>
-            <td><span class="blue">{{ $group->name }}</span> (100 人)</td>
+            <td>
+            <span class="blue">{{ $group->name }}</span>
+            (
+                <?php
+                     $childGroups = \DB::table('groups')->where('pid', $group->id)->get();
+                     $i = 0;
+                     foreach($childGroups as $childGroup){
+                        $i += \DB::table('users')->where('group_id', $childGroup->id)->count();
+                     }
+                     echo $i;
+                ?>
+            人)
+            </td>
             <td>军团</td>
             <td>@if($group->status) 已启用 @else <span class="red">未启用</span> @endif</td>
             <td>
@@ -27,8 +39,9 @@
             <tr>
                 <td></td>
                 <td style="text-indent: 40px">
-                    {{ $child->name }} (100 人) 
-                    <a href="#modalZu" rel="modalZu" class="grey" id="{{ $child->id }}" data-url="{{ route('delGroup', ['id' => $child->id]) }}" data-level="{{ $child->level }}">组长(@if(\DB::table('users')->whereRole_idAndGroup_id(1, $child->id)->first()) {{ \DB::table('users')->whereRole_idAndGroup_id(1, $child->id)->first()->name }} @else 暂无 @endif)</a>
+                    {{ $child->name }} ({{ \DB::table('users')->where('group_id', $child->id)->count() }} 人) 
+                    <!-- <a href="#modalZu" rel="modalZu" class="grey" id="{{ $child->id }}" data-url="{{ route('delGroup', ['id' => $child->id]) }}" data-level="{{ $child->level }}">组长(@if(\DB::table('users')->whereRole_idAndGroup_id(1, $child->id)->first()) {{ \DB::table('users')->whereRole_idAndGroup_id(1, $child->id)->first()->name }} @else 暂无 @endif)</a> -->
+                    (<span class="origin">@if(\DB::table('users')->whereRole_idAndGroup_id(1, $child->id)->first()) {{ \DB::table('users')->whereRole_idAndGroup_id(1, $child->id)->first()->name }} @else 暂无 @endif</span>)
                 </td>
                 <td>小组</td>
                 <td>@if($child->status) 已启用 @else <span class="red">未启用</span> @endif</td>
