@@ -59,9 +59,9 @@
 	    		<table style="width: 49%;float: right;">
 	    			<caption style="height: 50px;line-height: 50px">军团</caption>
 	    			<tr><th>排行</th><th>军团</th><th>总战绩</th></tr>
-			        @foreach($groups as $group)
+			        @foreach($groups as $key => $group)
 				        <tr>
-				        	<td>{{ $group->rank }}</td>
+				        	<td>{{ $key + 1 }}</td>
 				            <td>@if($group->group_id) {{ \DB::table('groups')->find($group->group_id)->name }} @else 未知 @endif</td>
 				            <td>{{ $group->total }}</td>
 				        </tr>
