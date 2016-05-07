@@ -117,7 +117,7 @@ Route::group(['middleware' => 'web'], function () {
             Route::get('user/{user_id}', ['as' => 'getUser', 'uses' => 'GroupAdminController@getUser']);
 
             // 添加组员
-            Route::get('addUser', ['as' => 'addUser', 'uses' => 'GroupAdminController@addUser']);
+            Route::get('addUser', ['as' => 'addUserG', 'uses' => 'GroupAdminController@addUser']);
             Route::post('addUser', ['as' => 'postAddUser', 'uses' => 'GroupAdminController@postAddUser']);
         });
 
