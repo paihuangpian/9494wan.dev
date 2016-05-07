@@ -11,11 +11,11 @@ class UserController extends Controller
 {
     public function index(){
     	if(isset($_GET['name'])){
-			$users = \DB::table('users')->where('name', 'like', '%' . $_GET['name'] . '%')->paginate(15);
+			$users = \DB::table('users')->where('name', 'like', '%' . $_GET['name'] . '%')->paginate(10);
 			$key = $_GET['name'];
 			$response = ['users' => $users, 'key' => $key];
 		}else{
-			$users = \DB::table('users')->paginate(15);
+			$users = \DB::table('users')->paginate(10);
 			$response = ['users' => $users];
 		}
     	

@@ -187,7 +187,7 @@ input{
     text-decoration: underline;
 }
 .container table tr:hover{
-    background-color: #f8f8f8;
+    background-color: #f0f0f0;
 }
 .container table th, .container table td{
     text-align: left;
@@ -236,4 +236,27 @@ input{
 }
 #modalZu{
   text-align: center;
+}
+
+/* 分页 */
+ul.pagination{
+    margin-top: 10px;
+}
+ul.pagination li{
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    width: 30px;
+    background-color: #e7e7e7;
+    margin-right: 5px;
+    text-align: center;
+}
+ul.pagination li.active{
+    background-color: #5bc0de;
+}
+ul.pagination li a{
+    display: block;
+}
+ul.pagination li.active span{
+    color: #fff;
 }
