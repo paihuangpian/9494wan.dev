@@ -8,7 +8,7 @@
     <div class="title">
         <h2>概览</h2>
     </div>
-    <table>
+    <table class="dash">
     	<tr>
     		<td width="200">员工</td>
     		<td>

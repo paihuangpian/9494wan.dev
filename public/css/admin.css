@@ -260,3 +260,6 @@ ul.pagination li a{
 ul.pagination li.active span{
     color: #fff;
 }
+table.dash tr:hover{
+    background: none;
+}
