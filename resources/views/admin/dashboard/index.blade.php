@@ -47,7 +47,8 @@
 				            <td>{{ $key + 1 }}</td>
 				            <td>
                                 @if($person->level_id)
-                                    <img src="/images/sign/{{ \DB::table('levels')->find($person->level_id)->sign }}" width="30">
+                                    <!-- <img src="/images/sign/{{ \DB::table('levels')->find($person->level_id)->sign }}"> -->
+                                    {{ \DB::table('levels')->find($person->level_id)->name }}
                                 @endif
                             </td>
 				            <td>{{ $person->name }}</td>
