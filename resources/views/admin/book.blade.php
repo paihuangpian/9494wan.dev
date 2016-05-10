@@ -16,7 +16,7 @@
             <td>{{ $key + 1 }}</td>
             <td><span class="blue">{{ \DB::table('users')->find($book->user_id)->name }}</span></td>
             <td>{{ $book->content }}</td>
-            <td>{{ date('Y-m-d', time($book->created_at)) }}</td>
+            <td>{{ date('Y-m-d', strtotime($book->created_at)) }}</td>
         @endforeach
     </table>
 @endsection

@@ -5,7 +5,7 @@
         <h2>员工({{ $user->name }})</h2> <a href="{{ route('user') }}" class="btn-info">员工</a>
     </div>
     <p>
-        <span class="origin">入伍：</span>{{ date('Y-m-d', time($user->created_at)) }}<span class="sep">/</span>
+        <span class="origin">入伍：</span>{{ date('Y-m-d', strtotime($user->created_at)) }}<span class="sep">/</span>
         <span class="origin">等级：</span>@if($user->level_id){{ \DB::table('levels')->find($user->level_id)->name }}@endif<span class="sep">/</span>
         <span class="origin">小组：</span>@if($user->group_id) {{ \DB::table('groups')->find($user->group_id)->name}} @else 未分配 @endif<span class="sep">/</span>
         <span class="origin">积分：</span><a href="">{{ $user->scores }}</a><span class="sep">/</span>
@@ -29,7 +29,7 @@
             @foreach($records as $record)
                 <tr>
                     <td>{{ $record->recharge }}</td>
-                    <td>{{ date('Y-m-d', time($record->created_at)) }}</td>
+                    <td>{{ date('Y-m-d', strtotime($record->created_at)) }}</td>
                     <td><a href="{{ route('delExperience', ['id' => $record->id]) }}">删除</a></td>
                 </tr>
             @endforeach
