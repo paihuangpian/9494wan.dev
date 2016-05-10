@@ -61,6 +61,7 @@ class HomeController extends Controller
                 return $value;
             });
         }
+
         @$need_experience = $next_level->experience - $user->experience;
         
         return view('home', [

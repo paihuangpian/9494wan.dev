@@ -30,7 +30,7 @@
                 <tr>
                     <td>{{ \DB::table('users')->find($record->user_id)->name }}</td>
                     <td>{{ $record->recharge }}</td>
-                    <td>{{ date('Y-m-d', time($record->created_at)) }}</td>
+                    <td>{{ date('Y-m-d', strtotime($record->created_at)) }}</td>
                 </tr>
             @endforeach
         </table>
