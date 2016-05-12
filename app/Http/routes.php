@@ -145,11 +145,16 @@ Route::group(['middleware' => 'web'], function () {
             $last_month_persons = \DB::select("select *, sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by user_id");
             $last_month_groups = \DB::select("select *, sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by group_id");
             
+            $todays = \DB::select("select *, sum(recharge) as total from records where created_at = '" . date('Y-m-d', time()) . "' group by user_id order by total desc limit 0, 10");
+            $today_groups = \DB::select("select *, sum(recharge) as total from records where created_at = '" . date('Y-m-d', time()) . "' group by group_id order by total desc");
+
             return view('rank', ['persons' => $persons, 'groups' => $groups, 'current_month' => $current_month, 'last_month' => $last_month,
                 'yesterday_persons' => $yesterday_persons,
                 'yesterday_groups' => $yesterday_groups,
                 'last_month_persons' => $last_month_persons,
-                'last_month_groups' => $last_month_groups]);
+                'last_month_groups' => $last_month_groups,
+                'todays' => $todays,
+                'today_groups' => $today_groups]);
         }]);
 
         // 留言板
