@@ -45,16 +45,18 @@
                     <table>
                         <tr><th>榜</th><th>军徽</th><th>英雄</th><th>总战功</th></tr>
                         @foreach($todays as $key => $today)
-                        <tr>
-                            <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
-                            <td>
-                                @if(\DB::table('users')->find($today->user_id)->level_id)
-                                    <img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('users')->find($today->user_id)->level_id)->sign }}" width="50">   
-                                @endif
-                            </td>
-                            <td>{{ \DB::table('users')->find($today->user_id)->name }}</td>
-                            <td>{{ $today->total }}</td>
-                        </tr>
+                            @if(\DB::table('users')->find($today->user_id)->status)
+                            <tr>
+                                <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
+                                <td>
+                                    @if(\DB::table('users')->find($today->user_id)->level_id)
+                                        <img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('users')->find($today->user_id)->level_id)->sign }}" width="50">   
+                                    @endif
+                                </td>
+                                <td>{{ \DB::table('users')->find($today->user_id)->name }}</td>
+                                <td>{{ $today->total }}</td>
+                            </tr>
+                            @endif
                         @endforeach
                     </table>
                 </div>
@@ -78,16 +80,18 @@
                     <table>
                         <tr><th>榜</th><th>军徽</th><th>英雄</th><th>总战功</th></tr>
                         @foreach($yesterday_persons as $key => $yesterday_person)
-                        <tr>
-                            <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
-                            <td>
-                                @if(\DB::table('users')->find($yesterday_person->user_id)->level_id)
-                                    <img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('users')->find($yesterday_person->user_id)->level_id)->sign }}" width="50">   
-                                @endif
-                            </td>
-                            <td>{{ \DB::table('users')->find($yesterday_person->user_id)->name }}</td>
-                            <td>{{ $yesterday_person->total }}</td>
-                        </tr>
+                            @if(\DB::table('users')->find($yesterday_person->user_id)->status)
+                            <tr>
+                                <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
+                                <td>
+                                    @if(\DB::table('users')->find($yesterday_person->user_id)->level_id)
+                                        <img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('users')->find($yesterday_person->user_id)->level_id)->sign }}" width="50">   
+                                    @endif
+                                </td>
+                                <td>{{ \DB::table('users')->find($yesterday_person->user_id)->name }}</td>
+                                <td>{{ $yesterday_person->total }}</td>
+                            </tr>
+                            @endif
                         @endforeach
                     </table>
                 </div>
@@ -111,16 +115,18 @@
                     <table>
                         <tr><th>榜</th><th>军徽</th><th>英雄</th><th>总战功</th></tr>
                         @foreach($last_month_persons as $key => $last_month_person)
-                        <tr>
-                            <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
-                            <td>
-                            @if(\DB::table('users')->find($last_month_person->user_id)->level_id)
-                                <img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('users')->find($last_month_person->user_id)->level_id)->sign }}"  width="50"
-                            >@endif
-                            </td>
-                            <td>{{ \DB::table('users')->find($last_month_person->user_id)->name }}</td>
-                            <td>{{ $last_month_person->total }}</td>
-                        </tr>
+                            @if(\DB::table('users')->find($last_month_person->user_id)->status)
+                            <tr>
+                                <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
+                                <td>
+                                @if(\DB::table('users')->find($last_month_person->user_id)->level_id)
+                                    <img src="/images/sign/{{ \DB::table('levels')->find(\DB::table('users')->find($last_month_person->user_id)->level_id)->sign }}"  width="50"
+                                >@endif
+                                </td>
+                                <td>{{ \DB::table('users')->find($last_month_person->user_id)->name }}</td>
+                                <td>{{ $last_month_person->total }}</td>
+                            </tr>
+                            @endif
                         @endforeach
                     </table>
                 </div>
@@ -150,12 +156,14 @@
                     <table>
                         <tr><th>榜</th><th>军徽</th><th>英雄</th><th>总战功</th></tr>
                         @foreach($persons as $key => $person)
-                        <tr>
-                            <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
-                            <td>@if($person->level_id)<img src="/images/sign/{{ \DB::table('levels')->find($person->level_id)->sign }}" width="50">@endif</td>
-                            <td>{{ $person->name }} </td>
-                            <td>{{ $person->experience }}</td>
-                        </tr>
+                            @if($person->status)
+                            <tr>
+                                <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
+                                <td>@if($person->level_id)<img src="/images/sign/{{ \DB::table('levels')->find($person->level_id)->sign }}" width="50">@endif</td>
+                                <td>{{ $person->name }} </td>
+                                <td>{{ $person->experience }}</td>
+                            </tr>
+                            @endif
                         @endforeach
                     </table>
                 </div>
