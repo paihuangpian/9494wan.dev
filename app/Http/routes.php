@@ -84,6 +84,9 @@ Route::group(['middleware' => ['web']], function () {
             // 战绩
             Route::get('experience/{user_id}', ['as' => 'getExperience', 'uses' => 'Admin\UserController@getExperience']);
             Route::get('delPerience',  ['as' => 'delExperience', 'uses' => 'Admin\UserController@delExperience']);
+
+            // 前台管理登录
+            Route::get('adminLogin', ['as' => 'adminLogin', 'uses' => 'Admin\UserController@adminLogin']);
         });
 
         // 留言板

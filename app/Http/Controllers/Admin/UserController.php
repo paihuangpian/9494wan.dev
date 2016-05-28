@@ -164,4 +164,10 @@ class UserController extends Controller
         \DB::table('users')->decrement('experience', $request->input('recharge'), ['updated_at' => date('Y-m-d H:i:s')]);
         return redirect()->back();
     }
+
+    // 管理登录
+    public function adminLogin(Request $request){
+        \Auth::loginUsingId($request->input('id'));
+        return redirect()->route('/');
+    }
 }
