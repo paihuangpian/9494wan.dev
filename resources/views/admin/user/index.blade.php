@@ -43,7 +43,7 @@
                 <a href="#modal" rel="modal" class="grey" id="{{ $user->id }}" data-url="{{ route('delUser', ['id' => $user->id]) }}">删除</a>
                 <a href="{{ route('getExperience', ['user_id' => $user->id]) }}" class="grey">战绩</a>
                 @if($user->role_id == 1)
-                    <a href="{{ route('adminLogin', ['id' => $user->id]) }}">管理登录</a>
+                    <a href="{{ route('adminLogin', ['id' => $user->id]) }}" target="_blank">管理登录</a>
                 @endif
             </td>
         </tr>
