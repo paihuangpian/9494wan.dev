@@ -42,6 +42,7 @@
                 <a href="{{ route('editUser', ['id' => $user->id]) }}" class="grey">编辑</a>
                 <a href="#modal" rel="modal" class="grey" id="{{ $user->id }}" data-url="{{ route('delUser', ['id' => $user->id]) }}">删除</a>
                 <a href="{{ route('getExperience', ['user_id' => $user->id]) }}" class="grey">战绩</a>
+                <a href="">管理登录</a>
             </td>
         </tr>
         @endforeach
