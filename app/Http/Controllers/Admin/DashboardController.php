@@ -24,7 +24,6 @@ class DashboardController extends Controller
 
         $last_month_persons = \DB::select("select *, sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by user_id");
         $last_month_groups = \DB::select("select *, sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by group_id");
-        dd($last_month_groups);
 
         $todays = \DB::select("select *, sum(recharge) as total from records where created_at = '" . date('Y-m-d', time()) . "' group by user_id order by total desc limit 0, 10");
         $today_groups = \DB::select("select *, sum(recharge) as total from records where created_at = '" . date('Y-m-d', time()) . "' group by group_id order by total desc");
