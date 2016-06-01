@@ -41,7 +41,7 @@
     		<td style="padding: 10px;">
 	    		<table style="width: 50%;float: left;">
 	    			<caption style="height: 49px;line-height: 50px">个人</caption>
-	    			<tr><th>榜</th><th>军徽</th><th>英雄</th><th>总战绩</th></tr>
+	    			<tr><th>榜</th><th>军衔</th><th>英雄</th><th>总战绩</th></tr>
 			        @foreach($persons as $key => $person)
 				        <tr>
 				            <td>{{ $key + 1 }}</td>

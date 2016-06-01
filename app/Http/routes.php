@@ -125,13 +125,27 @@ Route::group(['middleware' => 'web'], function () {
 
         // 排行榜
         Route::get('rank', ['as' => 'rank', function(){
+
+            $yesterday_time = date('Y-m-d', (time() - 3600 * 24));
+            // dd($yesterday_time);
             $persons = \DB::select("select *, (@i := @i + 1) rank from users,(SELECT @i:=0) AS it order by experience desc limit 0, 10");
             $groups = \DB::select("select group_id, sum(recharge) as total, (@i := @i + 1) rank from records,(SELECT @i:=0) AS it group by group_id order by total desc");
             $groups = \DB::select("select group_id, sum(recharge) as total from records group by group_id order by total desc");
 
             $current_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m')");
             $last_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m')");
-            return view('rank', ['persons' => $persons, 'groups' => $groups, 'current_month' => $current_month, 'last_month' => $last_month]);
+
+            $yesterday_persons = \DB::select("select *, sum(recharge) as total from records where created_at = '" . $yesterday_time . "' group by user_id order by total desc limit 0, 10");
+            $yesterday_groups = \DB::select("select *, sum(recharge) as total from records where created_at = '" . $yesterday_time . "' group by group_id order by total desc");
+
+            $last_month_persons = \DB::select("select *, sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by user_id");
+            $last_month_groups = \DB::select("select *, sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(DATE_SUB(curdate(), INTERVAL 1 MONTH),'%Y-%m') group by group_id");
+            
+            return view('rank', ['persons' => $persons, 'groups' => $groups, 'current_month' => $current_month, 'last_month' => $last_month,
+                'yesterday_persons' => $yesterday_persons,
+                'yesterday_groups' => $yesterday_groups,
+                'last_month_persons' => $last_month_persons,
+                'last_month_groups' => $last_month_groups]);
         }]);
 
         // 留言板
