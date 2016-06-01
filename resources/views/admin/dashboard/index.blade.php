@@ -168,11 +168,15 @@
                     <table>
                         <tr><th>榜</th><th>军团</th><th>总战功</th></tr>
                         @foreach($groups as $key => $group)
-                        <tr>
-                            <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
-                            <td>@if($group->group_id) @if(\DB::table('groups')->find($group->group_id)) {{ \DB::table('groups')->find($group->group_id)->name }} @endif @else 未知 @endif</td>
-                            <td>{{ $group->total }}</td>
-                        </tr>
+                            @if($group->group_id)
+                                @if(\DB::table('groups')->find($group->group_id))
+                                <tr>
+                                    <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
+                                    <td>{{ \DB::table('groups')->find($group->group_id)->name }}</td>
+                                    <td>{{ $group->total }}</td>
+                                </tr>
+                                @endif
+                            @endif
                         @endforeach
                     </table>
                 </div>
