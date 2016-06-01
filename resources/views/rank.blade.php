@@ -90,13 +90,7 @@
     <div style="height: 50px;line-height: 50px;text-align: left;">军团榜</div>
     <table>
         <tr><th>榜</th><th>军团</th><th>总战功</th></tr>
-        @foreach($last_month_groups as $key => $last_month_group)
-        <tr>
-            <td>@if(($key + 1) == 1) <span style="color:#eead0e">冠军</span> @elseif(($key + 1) == 2) <span style="color:#cdc1c5">亚军</span> @elseif(($key + 1) == 3) <span style="color:#cd950c">季军</span> @else  {{ $key + 1 }}  @endif</td>
-            <td>@if($last_month_group->group_id) {{ \DB::table('groups')->find($last_month_group->group_id)->name }} @else 未知 @endif</td>
-            <td>{{ $last_month_group->total }}</td>
-        </tr>
-        @endforeach
+        
     </table>
 </div>
 <div style="clear:both;height: 10px"></div>
