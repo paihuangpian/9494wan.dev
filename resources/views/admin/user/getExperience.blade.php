@@ -34,5 +34,8 @@
                 </tr>
             @endforeach
         </table>
+        <div class="action">
+        {{ $records->render() }}
+    </div>
     </p>
 @endsection
