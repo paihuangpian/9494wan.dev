@@ -22,7 +22,7 @@
         <span class="origin">上月战绩：</span>{{ $last_month[0]->total }} <span class="sep">/</span>
         <span class="origin">战绩累计：</span>{{ $total }}
     </p>
-    <p>战功</p>
+    <p>战功({{ $records->count() }})</p>
     <p>
         <table>
             <tr><th>战绩</th><th>时间</th><th>删除</th></tr>
@@ -30,12 +30,31 @@
                 <tr>
                     <td>{{ $record->recharge }}</td>
                     <td>{{ date('Y-m-d', strtotime($record->created_at)) }}</td>
-                    <td><a href="{{ route('delExperience', ['id' => $record->id, 'recharge' => $record->recharge]) }}">删除</a></td>
+                    <td><a href="#modal" rel="modal" class="grey" id="{{ $record->id }}" data-url="{{ route('delExperience', ['id' => $record->id, 'recharge' => $record->recharge]) }}">删除</a></td>
                 </tr>
             @endforeach
         </table>
         <div class="action">
         {{ $records->render() }}
-    </div>
+        </div>
+        <!-- 删除 modal start-->
+        <div id="modal" style="display: none" class="modal">
+            <p id="title"></p>
+            <p>
+                <a href="" class="hidemodal">取消</a>
+                <a id="delUrl" href="" class="btn-info" style="float: right;">确定</a>
+            </p>
+        </div>
+        <script type="text/javascript">
+            $(function(){
+              $('a[rel*=modal]').leanModal({ top: 150, overlay : 0.45, closeButton: ".modal_close" });
+              $('a[rel*=modal]').on("click",  function () {
+                  var url = $("#" + this.id).data('url');
+                  $('#title').html('确定删除该条记录么？');  
+                  $('#delUrl').attr('href', url);
+              });
+            });
+        </script>
+        <!-- 删除 modal end-->
     </p>
 @endsection

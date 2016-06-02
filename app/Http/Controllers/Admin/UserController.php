@@ -123,7 +123,7 @@ class UserController extends Controller
         \DB::table('users')->where('id', $user->id)->update(['rank' => $rank]);
         $yesterday_time = date('Y-m-d', (time() - 3600 * 24));
         $total = \DB::table('records')->where('user_id', $user->id)->sum('recharge');
-        $records = \DB::table('records')->where('user_id', $user->id)->limit(10)->orderBy('id', 'aesc')->paginate(1);
+        $records = \DB::table('records')->where('user_id', $user->id)->limit(10)->orderBy('id', 'aesc')->paginate(10);
         $today = \DB::table('records')->whereUser_idAndCreated_at($user->id, date('Y-m-d'))->sum('recharge');
         $yesterday = \DB::table('records')->whereUser_idAndCreated_at($user->id, $yesterday_time)->sum('recharge');
         $current_month = \DB::select("select sum(recharge) as total from records where date_format(created_at,'%Y-%m')=date_format(now(),'%Y-%m') and user_id = " . $user->id);
