@@ -69,7 +69,7 @@ class GroupAdminController extends Controller
         }
 
         $insert = array_except($request->all(), ['_token']);
-        $insert['created_at'] = date('Y-m-d');
+        $insert['created_at'] = date('Y-m-d', time() - 24 * 3600);
         $insert['group_id'] = \Auth::user()->group_id;
     	\DB::table('records')->insert(
             $insert
