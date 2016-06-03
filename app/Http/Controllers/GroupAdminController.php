@@ -82,8 +82,9 @@ class GroupAdminController extends Controller
         $experience = \DB::table('users')->find($request->input('user_id'))->experience;
 
         $level = \DB::select("select * from levels where " . $experience . " >= experience and " . $experience . " <= experience_max");
-
-        \DB::table('users')->where('id', $request->input('user_id'))->update(['level_id' => $level[0]->id]);
+        if($level){
+            \DB::table('users')->where('id', $request->input('user_id'))->update(['level_id' => $level[0]->id]);
+        }
 
 		return redirect()->back();
     }
