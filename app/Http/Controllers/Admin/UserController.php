@@ -161,7 +161,7 @@ class UserController extends Controller
 
     public function delExperience(Request $request){
         \DB::table('records')->delete($request->input('id'));
-        \DB::table('users')->decrement('experience', $request->input('recharge'), ['updated_at' => date('Y-m-d H:i:s')]);
+        \DB::table('users')->where('id', $request->input('user_id'))->decrement('experience', $request->input('recharge'), ['updated_at' => date('Y-m-d H:i:s')]);
         return redirect()->back();
     }
 

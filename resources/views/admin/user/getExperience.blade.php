@@ -30,7 +30,7 @@
                 <tr>
                     <td>{{ $record->recharge }}</td>
                     <td>{{ date('Y-m-d', strtotime($record->created_at)) }}</td>
-                    <td><a href="#modal" rel="modal" class="grey" id="{{ $record->id }}" data-url="{{ route('delExperience', ['id' => $record->id, 'recharge' => $record->recharge]) }}">删除</a></td>
+                    <td><a href="#modal" rel="modal" class="grey" id="{{ $record->id }}" data-url="{{ route('delExperience', ['id' => $record->id, 'recharge' => $record->recharge, 'user_id' => $user->id]) }}">删除</a></td>
                 </tr>
             @endforeach
         </table>
